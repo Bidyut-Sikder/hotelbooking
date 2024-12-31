@@ -2,8 +2,9 @@
 import express ,{Request,Response}from 'express';
 import cors from 'cors'
 import 'dotenv/config'
+import mongoose  from 'mongoose';
 
-
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
 const app = express();
 
@@ -25,7 +26,6 @@ app.get('/api/test',async (req:Request,res:Response) => {
 app.listen(8000,async () => {
     console.log('server is running on localhost:8000')
 })
-
 
 
 
