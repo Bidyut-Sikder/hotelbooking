@@ -3,8 +3,10 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import path from "path";
+import connectDB from "./config/db";
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
+connectDB()
+// mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
 

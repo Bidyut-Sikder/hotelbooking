@@ -28,7 +28,7 @@ jobs:
       # Build and test backend with MongoDB
       - name: Build and test backend with MongoDB
         run: |
-          docker-compose -f docker-compose.yml up -d
+          docker compose -f docker-compose.yml up -d
           sleep 20 # Wait for MongoDB to initialize
           docker logs backend
           docker-compose down
