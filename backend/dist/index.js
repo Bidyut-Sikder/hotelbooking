@@ -22,13 +22,24 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
-// connecting frontend and backend
-app.get("*", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.use(express.static("../../frontend/dist"))
+// app.use("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+// })
 app.get('/api/test', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json({ message: 'hello from api' });
 }));
-app.listen(8000, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('server is running on localhost:8000');
+// app.use(express.static("frontend/dist"))
+// app.use("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+// })
+// connecting frontend and backend
+app.use(express_1.default.static("../frontend/dist"));
+app.use("*", (req, res) => {
+    console.log(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
+    res.sendFile(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
+    //   res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"))  
+});
+app.listen(7000, () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('server is running on localhost:7000');
 }));
