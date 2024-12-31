@@ -15,8 +15,20 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 
 
+// app.use(express.static("../../frontend/dist"))
+
+// app.use("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+// })
+
+
+
+
+
 // connecting frontend and backend
-app.get("*", (req: Request, res: Response) => {
+app.use(express.static("../../frontend/dist"))
+app.use("*", (req: Request, res: Response) => {
+    console.log(path.join(__dirname, "../../frontend/dist/index.html"))
     res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
   });
 
