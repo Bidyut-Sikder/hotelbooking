@@ -17,12 +17,17 @@ app.get("/api/test", async (req: Request, res: Response) => {
 });
 
 // connecting frontend and backend
-app.use(express.static("../frontend/dist"));
+// app.use(express.static("../frontend/dist"));
 
-app.use("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.use("*", (req: Request, res: Response) => {
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });
 
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+app.get("*", (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+  });
+  
 app.listen(7000, async () => {
   console.log("server is running on localhost:7000");
 });
