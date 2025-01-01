@@ -63,24 +63,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
     
-    
-        
-      # - name: Build and push
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #       # context: ./frontend
-      #       context: ./frontend
-      #       # file: ./frontend/Dockerfile
-      #       file: ./frontend/Dockerfile
-      #       tags: ${{ secrets.DOCKER_USERNAME }}/hotelbooking-frontend:latest
-      #       push: true
+
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          # context: ./frontend
           context: ./
-          # file: ./frontend/Dockerfile
           file: ./Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/hotelbooking:latest
           push: true
