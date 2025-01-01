@@ -31,7 +31,7 @@ jobs:
           docker compose -f docker-compose.yml up -d
           sleep 20 # Wait for MongoDB to initialize
           docker logs backend
-          docker-compose down
+          docker compose down
 
       # Build and push backend Docker image
       - name: Build and push backend Docker image

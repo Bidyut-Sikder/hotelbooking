@@ -4,12 +4,12 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./hotelbooking/backend
-      dockerfile: Dockerfile
+      context: ./backend
+      dockerfile: ./Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:7000"
     environment:
-      MONGO_URI: mongodb://mongo:27017/hotelbooking
+      MONGO_URI: mongodb://mongo:27016/hotelbooking
     depends_on:
       - mongo
 
@@ -17,7 +17,7 @@ services:
     image: mongo:6.0
     container_name: mongo
     ports:
-      - "27017:27017"
+      - "27016:27017"
     volumes:
       - mongo-data:/data/db
 
