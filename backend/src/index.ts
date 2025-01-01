@@ -27,11 +27,19 @@ app.get("/api/bidyut", async (req: Request, res: Response) => {
   res.json({ message: "hello from bidyut" });
 });
 
+app.get("/api/check", async (req: Request, res: Response) => {
+  res.json({ message: "hello from last check  ",
+    lastCheck: new Date().toISOString(),
+    des:{
+      name:"bidyut",
+      age:25,
 
-// app.use(express.static("frontend/dist")); //only docker
-// app.get("*", (req: Request, res: Response) => {
-//     res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
-//   });
+    }
+
+   });
+});
+
+
 
 
 
