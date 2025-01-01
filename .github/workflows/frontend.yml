@@ -43,10 +43,23 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+            # context: ./frontend
             context: ./frontend
+            # file: ./frontend/Dockerfile
             file: ./frontend/Dockerfile
-            tags: ${{ secrets.DOCKER_USERNAME }}/hotelbooking-rontend:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/hotelbooking-frontend:latest
             push: true
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          # context: ./frontend
+          context: ./backend
+          # file: ./frontend/Dockerfile
+          file: ./backend/Dockerfile
+          tags: ${{ secrets.DOCKER_USERNAME }}/hotelbooking-backend:latest
+          push: true
+    
 
       # # Run lint
       # - name: Run lint
