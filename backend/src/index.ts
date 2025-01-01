@@ -14,13 +14,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req: Request, res: Response) => {
   res.json({ status: 'ok' });
 });
 
-// app.get("/api/test", async (req: Request, res: Response) => {
-//   res.json({ message: "hello from api" });
-// });
+app.get("/api/test", async (req: Request, res: Response) => {
+  res.json({ message: "hello from api" });
+});
 
  
 
