@@ -4,7 +4,7 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
+      context: ./hotelbooking/backend
       dockerfile: ./Dockerfile
     ports:
       - "5000:7000"

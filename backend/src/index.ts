@@ -30,6 +30,6 @@ app.get("*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
   });
   
-app.listen(7000, async () => {
-  console.log("server is running on localhost:7000");
+app.listen(5000, async () => {
+  console.log("server is running on localhost:5000");
 });
