@@ -1,0 +1,77 @@
+name: Backend CI/CD
+
+on:
+  push:
+    paths:
+      - 'backend/**'
+  pull_request:
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-test-dockerize:
+    environment:
+        name: Production #This is the name of the environment list set for testing on github environment
+    
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo:5.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=3
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        # with:
+        #   node-version: '18'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          cd backend
+          npm install
+
+      # Run lint
+      - name: Run lint
+        run: |
+          cd backend
+          npm run lint
+
+      # Run tests
+      - name: Run tests
+        env:
+          MONGO_URI: mongodb://localhost:27017/testdb
+        run: |
+          cd backend
+          npm test
+
+      # Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t hotelbooking/backend:latest ./backend
+
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+      # Push Docker image
+      - name: Push Docker image
+        run: |
+          docker tag hotelbooking/backend:latest hotelbooking/backend:${{ github.sha }}
+          docker push hotelbooking/backend:latest
+          docker push hotelbooking/backend:${{ github.sha }}
