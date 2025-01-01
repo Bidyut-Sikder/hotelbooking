@@ -36,11 +36,11 @@ jobs:
       # Build and push backend Docker image
       - name: Build and push backend Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/hotelbooking-backend:latest -f hotelbooking/backend/Dockerfile hotelbooking/backend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hotelbooking-backend:latest -f backend/Dockerfile hotelbooking/backend
           docker push ${{ secrets.DOCKER_USERNAME }}/hotelbooking-backend:latest
 
       # Build and push frontend Docker image
       - name: Build and push frontend Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/hotelbooking-frontend:latest -f hotelbooking/frontend/Dockerfile hotelbooking/frontend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hotelbooking-frontend:latest -f frontend/Dockerfile hotelbooking/frontend
           docker push ${{ secrets.DOCKER_USERNAME }}/hotelbooking-frontend:latest
