@@ -39,11 +39,11 @@ jobs:
       #     npm run lint
 
       # Run tests
-      - name: Run tests
+      # - name: Run tests
       #  run: |
           # cd frontend
           # npm test
-        run: console.log('bidyut')
+
       # Build Docker image
       - name: Build Docker image
         run: |
