@@ -3,11 +3,12 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./hotelbooking/backend
-      dockerfile: ./Dockerfile
+    # build:
+      # context: ./backend
+      # dockerfile: ./Dockerfile
+    image: bidyutsikder/backend  
     ports:
-      - "5000:7000"
+      - "5000:5000"
     environment:
       MONGO_URI: mongodb://mongo:27016/hotelbooking
     depends_on:
