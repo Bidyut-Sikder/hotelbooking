@@ -22,12 +22,18 @@ app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "hello from api" });
 });
 
- 
-
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+app.use(express.static("frontend/dist")); //only docker
 app.get("*", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+    res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
   });
+
+
+
+// app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
+// app.get("*", (req: Request, res: Response) => {
+//     res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+//   });
   
 app.listen(5000, async () => {
   console.log("server is running on localhost:5000");
