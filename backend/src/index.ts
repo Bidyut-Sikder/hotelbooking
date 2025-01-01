@@ -22,7 +22,7 @@ app.get('/api/health', (req, res) => {
 //   res.json({ message: "hello from api" });
 // });
 
-
+ 
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 app.get("*", (req: Request, res: Response) => {
