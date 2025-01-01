@@ -33,6 +33,15 @@ app.get("/api/check", async (req: Request, res: Response) => {
     des:{
       name:"bidyut",
       age:25,
+      city:"kolkata",
+      country:"india",
+      collage: "iiit kolkata",
+      email:"bidyut@gmail.com",
+      phone: "1234567890"
+      
+
+
+
 
     }
 

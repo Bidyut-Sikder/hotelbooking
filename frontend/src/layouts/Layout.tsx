@@ -1,8 +1,10 @@
 
-function layout() {
+
+
+function Layout() {
   return (
-    <div>layout</div>
+    <div> This is from Layout</div>
   )
 }
 
-export default layout
+export default Layout
