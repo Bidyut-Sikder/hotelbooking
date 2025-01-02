@@ -24,7 +24,7 @@ router.post(
       }
       user = new UserModel(req.body);
       await user.save();
-
+ 
       const token = jwt.sign(
         { userId: user.id },
         process.env.JWT_SECRET_KEY as string,
