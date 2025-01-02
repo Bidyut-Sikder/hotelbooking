@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import path from "path";
 import connectDB from "./config/db";
 import userRoutes from "./routes/users";
+import authRoutes from "./routes/auth";
 
 connectDB()
 // mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
@@ -16,16 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
+app.use('/api/auth',authRoutes)
 app.use('/api/users',userRoutes)
 
-app.get('/api/health', (req: Request, res: Response) => {
-  res.json({ status: 'ok' });
-});
 
-app.get("/api/test", async (req: Request, res: Response) => {
-  res.json({ message: "hello from api" });
-});
 
+
+// error handler 
 export class CustomError extends Error {
   statusCode: number;
 

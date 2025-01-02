@@ -7,7 +7,7 @@ import { check } from "express-validator";
 
 
 
-export const userInputCheckMiddleware=[
+export const userRegisterCheckMiddleware=[
     check('firstName','First Name is required.').isLength({min:3,max:20}).withMessage('Name mustbe between 3 and 20 characters'),
     check('lastName','Last Name is required.').isLength({min:3,max:20}).withMessage('Name mustbe between 3 and 20 characters'),
     check('email','email is required.').isEmail().withMessage('Please enter a valid email'),
@@ -15,6 +15,12 @@ export const userInputCheckMiddleware=[
 
 ]
 
+export const userLoginCheckMiddleware=[
+
+    check('email','email is required.').isEmail().withMessage('Please enter a valid email'),
+    check('password','Password is required.')
+ 
+]
 
 
 

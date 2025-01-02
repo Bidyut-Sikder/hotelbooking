@@ -3,13 +3,13 @@ import UserModel from "../models/user";
 import jwt from "jsonwebtoken";
 
 import { validationResult } from "express-validator";
-import { userInputCheckMiddleware } from "../middleware/middleware";
+import { userRegisterCheckMiddleware } from "../middleware/middleware";
 
 const router = express.Router();
 
 router.post(
   "/register",
-  userInputCheckMiddleware,
+  userRegisterCheckMiddleware,
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -47,3 +47,21 @@ router.post(
 );
 
 export default router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
