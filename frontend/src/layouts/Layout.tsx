@@ -1,10 +1,11 @@
-
-
+import Header from "../components/Header";
 
 function Layout() {
   return (
-    <div> This is from Layout</div>
-  )
+    <div className="flex flex-col min-h-screen">
+      <Header />
+    </div>
+  );
 }
 
-export default Layout
+export default Layout;

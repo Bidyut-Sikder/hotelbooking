@@ -27,36 +27,18 @@ app.get("/api/bidyut", async (req: Request, res: Response) => {
   res.json({ message: "hello from bidyut" });
 });
 
-app.get("/api/check", async (req: Request, res: Response) => {
-  res.json({ message: "hello from last check  ",
-    lastCheck: new Date().toISOString(),
-    des:{
-      name:"bidyut",
-      age:25,
-      city:"kolkata",
-      country:"india",
-      collage: "iiit kolkata",
-      email:"bidyut@gmail.com",
-      phone: "1234567890"
-      
 
 
 
-
-    }
-
-   });
-});
-
-
-
-
-
+// Connencting backend to frontend
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.get("*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
   });
+  
+
+
   
 app.listen(5000, async () => {
   console.log("server is running on localhost:5000");
