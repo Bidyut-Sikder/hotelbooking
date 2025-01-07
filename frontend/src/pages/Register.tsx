@@ -13,8 +13,8 @@ export type FormType = {
 };
 
 function Register() {
-  const {showToast}=useAppContext()
-  const navigate=useNavigate()
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -23,12 +23,13 @@ function Register() {
   } = useForm<FormType>();
   const mutation = useMutation(apiClient.register, {
     onSuccess: () => {
-      showToast({message:"Registration successful.", type:"SUCCESS"});
-      navigate("/")
+      showToast({ message: "Registration successful.", type: "SUCCESS" });
+      navigate("/");
       // console.log("Register Success");
+      window.location.reload();
     },
     onError: (error: Error) => {
-      showToast({message:error.message, type:"ERROR"});
+      showToast({ message: error.message, type: "ERROR" });
 
       // console.log(error);
     },
