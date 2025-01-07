@@ -24,7 +24,7 @@ router.post(
       }
       user = new UserModel(req.body);
       await user.save();
- 
+
       const token = jwt.sign(
         { userId: user.id },
         process.env.JWT_SECRET_KEY as string,
@@ -37,7 +37,8 @@ router.post(
         secure: process.env.NODE_ENV === "production", // true only in production
         maxAge: 24 * 60 * 60 * 1000, // 1
       });
-      res.sendStatus(200);
+      res.status(201).json({ message: "User created successfully." });
+
       return;
     } catch (error) {
       console.log(error);
@@ -47,21 +48,3 @@ router.post(
 );
 
 export default router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

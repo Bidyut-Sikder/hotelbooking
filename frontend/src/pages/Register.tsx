@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import * as apiClient from "../api-client";
 
-type FormType = {
+export type FormType = {
   firstName: string;
   lastName: string;
   email: string;
@@ -13,12 +15,19 @@ function Register() {
     register,
     watch,
     handleSubmit,
-    formState,
+    formState: { errors },
   } = useForm<FormType>();
-  console.log(formState)
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const mutation = useMutation(apiClient.register, {
+    onSuccess: () => {
+      console.log("Register Success");
+    },
+    onError: (error: Error) => {
+      console.log(error);
+    },
+  });
 
+  const onSubmit = handleSubmit((data) => {
+    mutation.mutate(data);
   });
 
   return (
@@ -32,12 +41,12 @@ function Register() {
           First Name
           <input
             className="border rounded w-full py-1 px-2 font-normal"
-            {...register("firstName", { required: "This field is required." })}
+            {...register("firstName", { required: "FirstName is required." })}
             type="text"
           />
-          {/* {errors.firstName && (
+          {errors.firstName && (
             <span className="text-red-500">{errors.firstName.message}</span>
-          )} */}
+          )}
         </label>
         <label
           className="text-gray-700 text-sm font-bold flex-1"
@@ -46,24 +55,30 @@ function Register() {
           Last Name
           <input
             className="border rounded w-full py-1 px-2 font-normal"
-            {...register("lastName", { required: "This field is required." })}
+            {...register("lastName", { required: "LastName is required." })}
             type="text"
           />
-          {/* {errors.lastName && (
+          {errors.lastName && (
             <span className="text-red-500">{errors.lastName.message}</span>
-          )} */}
+          )}
         </label>
       </div>
       <label className="text-gray-700 text-sm font-bold flex-1" htmlFor="email">
         Email
         <input
           className="border rounded w-full py-1 px-2 font-normal"
-          {...register("email", { required: "Email is required." })}
+          {...register("email", {
+            required: "Email is required.",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Basic email regex
+              message: "Enter a valid email address",
+            },
+          })}
           type="email"
         />
-        {/* {errors.email && (
+        {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
-        )} */}
+        )}
       </label>
       <label
         className="text-gray-700 text-sm font-bold flex-1"
@@ -81,9 +96,9 @@ function Register() {
           })}
           type="password"
         />
-        {/* {errors.password && (
+        {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
-        )} */}
+        )}
       </label>
       <label
         className="text-gray-700 text-sm font-bold flex-1"
@@ -103,9 +118,9 @@ function Register() {
           })}
           type="password"
         />
-        {/* {errors.confirmPassword && (
+        {errors.confirmPassword && (
           <span className="text-red-500">{errors.confirmPassword.message}</span>
-        )} */}
+        )}
       </label>
       <span>
         <button
