@@ -13,7 +13,7 @@ export type FormType = {
 };
 
 function Register() {
-  const { showToast } = useAppContext();
+  const { showToast, refreshAuth } = useAppContext();
   const navigate = useNavigate();
   const {
     register,
@@ -31,9 +31,10 @@ function Register() {
           message: "Registration successful. Please sign in to continue.",
         },
       });
+      refreshAuth();
       // console.log("Register Success");
 
-      window.location.reload();
+      // window.location.reload();
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

@@ -46,10 +46,8 @@ router.post(
         maxAge: 24 * 60 * 60 * 1000,
       });
 
-
-
-
       res.status(200).json({ userId: user.id });
+      return;
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });
@@ -58,13 +56,16 @@ router.post(
   }
 );
 
+router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
+  // console.log(req.userId)
+  res.status(200).send({ userId: req.userId });
+  return;
+});
 
-
-
-router.get('/validate-token',verifyToken,(req:Request,res:Response)=>{
-res.status(200).send({ userId: req.userId });
-})
-
-
+router.post("/logout", (req: Request, res: Response) => {
+  res.cookie("auth_token", "", { expires: new Date(0) });
+  res.status(200).json({ message: "Logged out successfully." });
+  return;
+});
 
 export default router;
