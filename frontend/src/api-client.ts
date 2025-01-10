@@ -1,4 +1,5 @@
 import { FormType } from "./pages/Register";
+import { SignInFormType } from "./pages/SignIn";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -33,6 +34,22 @@ export const verifyToken = async () => {
 
 
 
+export const signIn = async (formData:SignInFormType) => {
+  const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  const resData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(resData.message);
+  }
+  return resData;
+};
 
 
 

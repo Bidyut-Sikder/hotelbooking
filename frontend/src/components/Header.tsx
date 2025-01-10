@@ -4,7 +4,7 @@ import { useAppContext } from "../context/AppContext";
 
 function Header() {
   const { isLoggedIn } = useAppContext();
-console.log(isLoggedIn)
+// console.log(isLoggedIn)
 
 
   return (

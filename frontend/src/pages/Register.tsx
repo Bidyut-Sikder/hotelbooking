@@ -21,11 +21,18 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormType>();
+
   const mutation = useMutation(apiClient.register, {
     onSuccess: () => {
       showToast({ message: "Registration successful.", type: "SUCCESS" });
-      navigate("/");
+      navigate("/", {
+        replace: true,
+        state: {
+          message: "Registration successful. Please sign in to continue.",
+        },
+      });
       // console.log("Register Success");
+
       window.location.reload();
     },
     onError: (error: Error) => {
