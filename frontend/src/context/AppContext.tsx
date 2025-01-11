@@ -92,7 +92,7 @@ export const AppContextProvider = ({
           setToast(toastMessage);
         },
         isLoggedIn: !isError && !!data, // Ensure both error and data are considered
-        refreshAuth,
+        refreshAuth, // refetching validate-token api
       }}
     >
       {toast && (

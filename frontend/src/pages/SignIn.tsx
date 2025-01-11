@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export type SignInFormType = {
   email: string;
@@ -79,7 +80,10 @@ function SignIn() {
             <span className="text-red-500">{errors.password.message}</span>
           )}
         </label>
-        <span>
+        <span className="flex items-center justify-between">
+          <span className="text-sm">
+            Not Registered? <Link className="underline" to="/register">Register here.</Link>
+          </span>
           <button
             type="submit"
             className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
