@@ -1,10 +1,10 @@
 import { FormType } from "./pages/Register";
 import { SignInFormType } from "./pages/SignIn";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const register = async (formData: FormType) => {
-  const res = await fetch(`${API_BASE_URL}/api/users/register`, {
+  const res = await fetch(`/api/users/register`, {
     method: "POST",
     credentials: "include", // sets cookies to every post request
     headers: {
@@ -20,7 +20,7 @@ export const register = async (formData: FormType) => {
 };
 
 export const verifyToken = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
+  const response = await fetch(`/api/auth/validate-token`, {
     method: "GET",
     credentials: "include",
   });
@@ -35,7 +35,7 @@ export const verifyToken = async () => {
 
 
 export const signIn = async (formData:SignInFormType) => {
-  const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+  const res = await fetch(`/api/auth/login`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -55,7 +55,7 @@ export const signIn = async (formData:SignInFormType) => {
 
 
 export const logOut = async () => {
-  const res = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+  const res = await fetch(`/api/auth/logout`, {
     method: "POST",
     credentials: "include",
     headers: {
