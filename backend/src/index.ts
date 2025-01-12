@@ -41,7 +41,7 @@ export class CustomError extends Error {
 export const errorHandler = (
   err: CustomError | Error,
   req: Request,
-  res: Response,
+  res: Response, 
   next: NextFunction
 ): void => {
   const statusCode = err instanceof CustomError ? err.statusCode : 500;
@@ -63,6 +63,6 @@ app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 
-app.listen(5000, async () => {
+app.listen(5000, async () => { 
   console.log("server is running on localhost:5000");
 });

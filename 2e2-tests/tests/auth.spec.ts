@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const URL = "http://localhost:5173/";
 
+//getByRole targets html element
 
 // User Register test
 test("should allow the user to Register", async ({ page }) => {
@@ -15,7 +16,7 @@ test("should allow the user to Register", async ({ page }) => {
   await page.locator('[name="lastName"]').fill("sikder");
   await page.locator('[name="email"]').fill("bidyutsikder2001@gmail.com");
   await page.locator('[name="password"]').fill("123456");
-  await page.locator('[name="confirmPassword"]').fill("123456 ");
+  await page.locator('[name="confirmPassword"]').fill("123456");
 
   await page.getByRole('button',{name:'Create Account'}).click()
 
@@ -27,8 +28,8 @@ test("should allow the user to Register", async ({ page }) => {
 
 
 
+// //user sign in test
 
-//getByRole targets html element
 test("should allow the user to sign in", async ({ page }) => {
   await page.goto(URL);
   await page.getByRole("link", { name: "Sign In" }).click();

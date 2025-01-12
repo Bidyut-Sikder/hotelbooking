@@ -1,10 +1,13 @@
 import { FormType } from "./pages/Register";
 import { SignInFormType } from "./pages/SignIn";
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+// this project The Frontend and Backend are hosted on the same domain
+//when we host this on render on the same domain API_BASE_URL will be undefined
+// so we need to use "" as a fallback value
 
 export const register = async (formData: FormType) => {
-  const res = await fetch(`/api/users/register`, {
+  const res = await fetch(`${API_BASE_URL}/api/users/register`, {
     method: "POST",
     credentials: "include", // sets cookies to every post request
     headers: {
@@ -20,7 +23,7 @@ export const register = async (formData: FormType) => {
 };
 
 export const verifyToken = async () => {
-  const response = await fetch(`/api/auth/validate-token`, {
+  const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     method: "GET",
     credentials: "include",
   });
@@ -31,11 +34,8 @@ export const verifyToken = async () => {
   return response.json();
 };
 
-
-
-
-export const signIn = async (formData:SignInFormType) => {
-  const res = await fetch(`/api/auth/login`, {
+export const signIn = async (formData: SignInFormType) => {
+  const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -51,28 +51,16 @@ export const signIn = async (formData:SignInFormType) => {
   return resData;
 };
 
-
-
-
 export const logOut = async () => {
-  const res = await fetch(`/api/auth/logout`, {
+  const res = await fetch(`${API_BASE_URL}/api/auth/logout`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-    }
+    },
   });
-
 
   if (!res.ok) {
     throw new Error("Error logging out");
   }
-
 };
-
-
-
-
-
-
-
