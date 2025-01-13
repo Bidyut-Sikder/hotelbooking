@@ -7,6 +7,14 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
+import {v2 as cloudinary} from "cloudinary";
+
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 connectDB();
 // mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);

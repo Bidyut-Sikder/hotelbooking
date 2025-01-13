@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import "dotenv/config";
 
-console.log(process.env.NODE_ENV);
+
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === "development") {
