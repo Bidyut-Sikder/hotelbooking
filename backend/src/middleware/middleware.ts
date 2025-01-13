@@ -63,13 +63,4 @@ export const validateHotelData = [
     .notEmpty()
     .withMessage("Price per night is required."),
 
-  //   body("imageUrls")
-  //     .isArray({ min: 1 })
-  //     .withMessage("Image URLs must be an array with at least one item.")
-  //     .custom((imageUrls) => {
-  //       if (!imageUrls.every((url: string) => typeof url === "string")) {
-  //         throw new Error("Each image URL must be a string.");
-  //       }
-  //       return true;
-  //     }),
 ];
