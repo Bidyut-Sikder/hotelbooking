@@ -1,4 +1,4 @@
-# Project Name
+# Hotelbooking Web App
 
 ## Description
 
@@ -43,7 +43,7 @@ project-root/
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-repo-url/project-name.git
+git clone https://github.com/Bidyut-Sikder/hotelbooking.git
 cd project-name
 ```
 
@@ -72,11 +72,20 @@ cd project-name
    ```
 3. Configure environment variables by creating a `.env` file in the `backend` directory. Example:
    ```env
-   PORT=5000
-   MONGO_URI=your-mongo-uri
-   CLOUDINARY_NAME=your-cloudinary-name
-   CLOUDINARY_API_KEY=your-cloudinary-api-key
-   CLOUDINARY_API_SECRET=your-cloudinary-api-secret
+NODE_ENV=development
+MONGODB_CONNECTION_STRING_DEV=mongodb://localhost:27017/hotelbooking
+MONGODB_CONNECTION_STRING=
+
+FRONTEND_URL=http://localhost:5173
+
+JWT_SECRET_KEY=
+
+NODE_VERSION=20.10.0
+#cloudinary variables
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
    ```
 4. Start the backend server:
    ```bash
@@ -95,11 +104,8 @@ cd project-name
 - **POST /upload**: Handle file uploads using Multer and store them in Cloudinary.
 - **GET /items**: Fetch a list of items from the database.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
 
 ## Contributing
 Feel free to fork this repository and make contributions. Submit a pull request for review.
 
-## Contact
-For questions or support, please contact [your-email@example.com].
