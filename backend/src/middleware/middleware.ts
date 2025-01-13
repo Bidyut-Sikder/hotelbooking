@@ -1,25 +1,75 @@
+import { check, body } from "express-validator";
 
+export const userRegisterCheckMiddleware = [
+  check("firstName", "First Name is required.")
+    .isLength({ min: 3, max: 20 })
+    .withMessage("Name mustbe between 3 and 20 characters"),
+  check("lastName", "Last Name is required.")
+    .isLength({ min: 3, max: 20 })
+    .withMessage("Name mustbe between 3 and 20 characters"),
+  check("email", "email is required.")
+    .isEmail()
+    .withMessage("Please enter a valid email"),
+  check("password", "Password is required.")
+    .isLength({ min: 6, max: 20 })
+    .withMessage("Password mustbe between 6 and 20 characters"),
+];
 
+export const userLoginCheckMiddleware = [
+  check("email", "email is required.")
+    .isEmail()
+    .withMessage("Please enter a valid email"),
+  check("password", "Password is required."),
+];
 
-import { check } from "express-validator";
+export const validateHotelData = [
+  body("name")
+    .isString()
+    .withMessage("Name must be a string.")
+    .notEmpty()
+    .withMessage("Name is required."),
 
+  body("city")
+    .isString()
+    .withMessage("City must be a string.")
+    .notEmpty()
+    .withMessage("City is required."),
 
+  body("country")
+    .isString()
+    .withMessage("Country must be a string.")
+    .notEmpty()
+    .withMessage("Country is required."),
 
+  body("description")
+    .isString()
+    .withMessage("Description must be a string.")
+    .notEmpty()
+    .withMessage("Description is required."),
 
-export const userRegisterCheckMiddleware=[
-    check('firstName','First Name is required.').isLength({min:3,max:20}).withMessage('Name mustbe between 3 and 20 characters'),
-    check('lastName','Last Name is required.').isLength({min:3,max:20}).withMessage('Name mustbe between 3 and 20 characters'),
-    check('email','email is required.').isEmail().withMessage('Please enter a valid email'),
-    check('password','Password is required.').isLength({min:6,max:20}).withMessage('Password mustbe between 6 and 20 characters'),
+  body("type")
+    .isString()
+    .withMessage("Type must be a string.")
+    .notEmpty()
+    .withMessage("Type is required."),
 
-]
+  body("facilities")
+    .notEmpty()
+    .isArray()
+    .withMessage("Facilities are required."),
+  body("pricePerNight")
+    .isNumeric()
+    .withMessage("Price per night must be a non-negative number.")
+    .notEmpty()
+    .withMessage("Price per night is required."),
 
-export const userLoginCheckMiddleware=[
-
-    check('email','email is required.').isEmail().withMessage('Please enter a valid email'),
-    check('password','Password is required.')
- 
-]
-
-
-
+  //   body("imageUrls")
+  //     .isArray({ min: 1 })
+  //     .withMessage("Image URLs must be an array with at least one item.")
+  //     .custom((imageUrls) => {
+  //       if (!imageUrls.every((url: string) => typeof url === "string")) {
+  //         throw new Error("Each image URL must be a string.");
+  //       }
+  //       return true;
+  //     }),
+];
