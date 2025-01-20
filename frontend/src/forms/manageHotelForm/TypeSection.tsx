@@ -9,7 +9,7 @@ function TypeSection() {
     formState: { errors },
   } = useFormContext<HotelFormData>();
   const typeWatch = watch("type");
-  console.log(typeWatch);
+  // console.log(typeWatch);
   return (
     <div>
       <h2 className="text-2xl font-bold mb-3">Type</h2>

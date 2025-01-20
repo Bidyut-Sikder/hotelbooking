@@ -14,13 +14,10 @@ function DetailsSection() {
         <input
           className="border rounded w-full py-1 px-2 font-normal"
           {...register("name", {
-            required: "Email is required.",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Basic email regex
-              message: "Enter a valid email address",
-            },
+            required: "Name is required.",
+
           })}
-          type="email"
+          type="name"
         />
         {errors.name && (
           <span className="text-red-500">{errors.name.message}</span>

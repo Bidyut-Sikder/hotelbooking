@@ -64,3 +64,22 @@ export const logOut = async () => {
     throw new Error("Error logging out");
   }
 };
+
+
+
+export const addMyHotel = async (hotelFormData:FormData) => {
+  //FormData is a class in the browser that allows us to easily create a form data object
+  const res = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+    method: "POST",
+    credentials: "include",
+    body:hotelFormData,
+
+  });
+console.log(res)
+  if (!res.ok) {
+    throw new Error("Error adding hotel");
+  }
+  
+  return res.json()
+};
+

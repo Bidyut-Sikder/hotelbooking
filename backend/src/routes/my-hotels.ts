@@ -20,7 +20,7 @@ router.post(
   "/",
   verifyToken,
   validateHotelData,
-  upload.array("imagesFiles", 6),
+  upload.array("imageFiles", 6),
   async (req: Request, res: Response) => {
     try {
       const imageFiles = req.files as Express.Multer.File[];
@@ -31,7 +31,10 @@ router.post(
         const base64 = image.buffer.toString("base64");
         // const base64 = Buffer.from(image.buffer).toString("base64");
         const uploadedImage = await cloudinary.uploader.upload(
-          `data:${image.mimetype};base64,${base64}`
+          `data:${image.mimetype};base64,${base64}`,
+          {
+            folder: "hotelBooking",//cloudinary images folder name 
+          }
         );
         return uploadedImage.secure_url;
       });
@@ -50,6 +53,4 @@ router.post(
   }
 );
 
-
-
-export default router
+export default router;

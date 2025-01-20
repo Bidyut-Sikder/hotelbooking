@@ -13,8 +13,7 @@ const connectDB = async () => {
       return;
     }
     await mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
-    console.log("MongoDB connected");
-    console.log("connected to production");
+    console.log("connected to production Database");
   } catch (error) {
     console.error("Error connecting to MongoDB", error);
   }
