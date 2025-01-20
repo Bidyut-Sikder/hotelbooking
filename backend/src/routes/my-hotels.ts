@@ -33,7 +33,7 @@ router.post(
         const uploadedImage = await cloudinary.uploader.upload(
           `data:${image.mimetype};base64,${base64}`,
           {
-            folder: "hotelBooking",//cloudinary images folder name 
+            folder: "hotelBooking", //cloudinary images folder name
           }
         );
         return uploadedImage.secure_url;

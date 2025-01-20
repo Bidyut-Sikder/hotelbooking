@@ -33,7 +33,7 @@ const ImagesSection = () => {
           {errors.imageFiles.message}
         </span>
       )}
-    </div> 
+    </div>
   );
 };
 

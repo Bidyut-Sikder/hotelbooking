@@ -21,11 +21,11 @@ export type HotelFormData = {
 
 type Props = {
   onSave: (data: FormData) => void;
-  isLoading:boolean
-  };
+  isLoading: boolean;
+};
 //if we do this configuration.all the children of the FormProvider
 // will be avialable to access the form methods
-function ManageHotelForm({onSave,isLoading}:Props) {
+function ManageHotelForm({ onSave, isLoading }: Props) {
   const formMethods = useForm<HotelFormData>();
   const { handleSubmit } = formMethods;
 
@@ -38,7 +38,6 @@ function ManageHotelForm({onSave,isLoading}:Props) {
     formData.append("type", formDataJson.type);
     formData.append("pricePerNight", formDataJson.pricePerNight.toString());
     formData.append("starRating", formDataJson.starRating.toString());
-    formData.append("imageFiles", formDataJson.imageFiles[0]);
 
     formData.append("adultCount", formDataJson.adultCount.toString());
     formData.append("childCount", formDataJson.childCount.toString());
@@ -46,11 +45,11 @@ function ManageHotelForm({onSave,isLoading}:Props) {
     formDataJson.facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);
     });
-
+    console.log(formDataJson.imageFiles);
     Array.from(formDataJson.imageFiles).forEach((imageFile) => {
       formData.append(`imageFiles`, imageFile);
     });
-    onSave(formData)
+    onSave(formData);
   });
 
   return (
@@ -63,9 +62,10 @@ function ManageHotelForm({onSave,isLoading}:Props) {
         <ImagesSection />
         <span>
           <button
-          disabled={isLoading}
-           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500">
-            {isLoading?"Saving...":"Save"}
+            disabled={isLoading}
+            className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl disabled:bg-gray-500"
+          >
+            {isLoading ? "Saving..." : "Save"}
           </button>
         </span>
       </form>
