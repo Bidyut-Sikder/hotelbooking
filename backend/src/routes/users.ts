@@ -35,8 +35,8 @@ router.post(
       res.cookie("auth_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // true only in production
-        maxAge: 24 * 60 * 60 * 1000, // 1
-        sameSite:'none'
+        maxAge: 24 * 60 * 60 * 1000, 
+
       });
       res.status(201).json({ message: "User created successfully." });
 

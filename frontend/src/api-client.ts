@@ -26,9 +26,7 @@ export const verifyToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     method: "GET",
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
+
   });
 
   if (!response.ok) {
