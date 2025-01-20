@@ -26,6 +26,9 @@ export const verifyToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     method: "GET",
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (!response.ok) {
@@ -65,22 +68,17 @@ export const logOut = async () => {
   }
 };
 
-
-
-export const addMyHotel = async (hotelFormData:FormData) => {
-
+export const addMyHotel = async (hotelFormData: FormData) => {
   //FormData is a class in the browser that allows us to easily create a form data object
   const res = await fetch(`${API_BASE_URL}/api/my-hotels`, {
     method: "POST",
     credentials: "include",
-    body:hotelFormData,
-
+    body: hotelFormData,
   });
 
   if (!res.ok) {
     throw new Error("Error adding hotel");
   }
-  
-  return res.json()
-};
 
+  return res.json();
+};
