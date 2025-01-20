@@ -8,7 +8,7 @@ import connectDB from "./config/db";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import hotelRoutes from "./routes/my-hotels";
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary configuration
 cloudinary.config({
@@ -28,7 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     // origin: "*", // we can not use * if we use credentials:'include' in the fetch API
-    origin: process.env.FRONTEND_URL, // FrontEnd request {method: "POST", credentials:'include',} // sets cookies to every post request)
+    origin: [
+      process.env.FRONTEND_URL as string,
+      "https://hotelbooking-xi.vercel.app",
+    ], // FrontEnd request {method: "POST", credentials:'include',} // sets cookies to every post request)
     credentials: true, // Allow sending cookies with requests
   })
 );
@@ -51,7 +54,7 @@ export class CustomError extends Error {
 export const errorHandler = (
   err: CustomError | Error,
   req: Request,
-  res: Response, 
+  res: Response,
   next: NextFunction
 ): void => {
   const statusCode = err instanceof CustomError ? err.statusCode : 500;
@@ -73,6 +76,6 @@ app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 
-app.listen(5000, async () => { 
+app.listen(5000, async () => {
   console.log("server is running on localhost:5000");
 });
