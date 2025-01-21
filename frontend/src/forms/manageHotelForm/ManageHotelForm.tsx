@@ -4,6 +4,8 @@ import TypeSection from "./TypeSection";
 import Facilities from "./Facilities";
 import GuestSection from "./GuestSection";
 import ImagesSection from "./ImagesSection";
+import { HotelType } from "../../../../backend/src/shared/types";
+import { useEffect } from "react";
 
 export type HotelFormData = {
   name: string;
@@ -15,6 +17,7 @@ export type HotelFormData = {
   starRating: number;
   facilities: string[];
   imageFiles: FileList;
+  imageUrls:string[];
   adultCount: number;
   childCount: number;
 };
@@ -22,12 +25,17 @@ export type HotelFormData = {
 type Props = {
   onSave: (data: FormData) => void;
   isLoading: boolean;
+  hotel?: HotelType;
 };
 //if we do this configuration.all the children of the FormProvider
 // will be avialable to access the form methods
-function ManageHotelForm({ onSave, isLoading }: Props) {
+function ManageHotelForm({ onSave, isLoading, hotel }: Props) {
   const formMethods = useForm<HotelFormData>();
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, reset } = formMethods;
+
+  useEffect(() => {
+    reset(hotel);
+  }, [hotel,reset]);
 
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const formData = new FormData();
