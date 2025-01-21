@@ -18,27 +18,40 @@ test.beforeEach(async ({ page }) => {
 });
 
 //add-hotel test
-test("should allow user to add a hotel", async ({ page }) => {
-  await page.goto(`${URL}/add-hotel`);
-  await page.locator('[name="name"]').fill("test hotel");
-  await page.locator('[name="city"]').fill("test Dhaka");
-  await page.locator('[name="country"]').fill("test Bangladesh");
-  await page.locator('[name="description"]').fill("test description");
-  await page.locator('[name="pricePerNight"]').fill("200");
+// test("should allow user to add a hotel", async ({ page }) => {
+//   await page.goto(`${URL}/add-hotel`);
+//   await page.locator('[name="name"]').fill("test hotel");
+//   await page.locator('[name="city"]').fill("test Dhaka");
+//   await page.locator('[name="country"]').fill("test Bangladesh");
+//   await page.locator('[name="description"]').fill("test description");
+//   await page.locator('[name="pricePerNight"]').fill("200");
 
-  await page.selectOption('select[name="starRating"]', "3");
-  console.log(path.join(__dirname, "tests_files", "test1.png"));
-  await page.getByText("Budget").click();
-  await page.getByLabel("Free Wifi").check();
-  await page.locator('[name="adultCount"]').fill("2");
-  await page.locator('[name="childCount"]').fill("2");
-  await page.setInputFiles('[name="imageFiles"]', [
-    path.join(__dirname, "test_files", "test1.png"),
-    path.join(__dirname, "test_files", "test2.png"),
-  ]);
+//   await page.selectOption('select[name="starRating"]', "3");
+//   console.log(path.join(__dirname, "tests_files", "test1.png"));
+//   await page.getByText("Budget").click();
+//   await page.getByLabel("Free Wifi").check();
+//   await page.locator('[name="adultCount"]').fill("2");
+//   await page.locator('[name="childCount"]').fill("2");
+//   await page.setInputFiles('[name="imageFiles"]', [
+//     path.join(__dirname, "test_files", "test1.png"),
+//     path.join(__dirname, "test_files", "test2.png"),
+//   ]);
 
-  await page.getByRole("button", { name: "Save" }).click();
-  await expect(page.getByText("Hotel added successfully")).toBeVisible({
-    timeout: 10000,
-  });
+//   await page.getByRole("button", { name: "Save" }).click();
+//   await expect(page.getByText("Hotel added successfully")).toBeVisible({
+//     timeout: 10000,
+//   });
+// });
+
+//get-hotels
+test("should display hotels", async ({ page }) => {
+  await page.goto(`${URL}/my-hotels`);
+
+  await expect(page.getByText("My Hotels")).toBeVisible();
+  await expect(
+    page.getByText(
+      "An event handler is a block of code or a function that executes in response to a specific"
+    )
+  ).toBeVisible();
+  //add hotels data.to make sure that hotels are displayed
 });

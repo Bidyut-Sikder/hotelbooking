@@ -1,6 +1,6 @@
 import { FormType } from "./pages/Register";
 import { SignInFormType } from "./pages/SignIn";
-import { HotelType } from "../../backend/src/models/hotel";
+import { HotelType } from "../../backend/src/shared/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 // this project The Frontend and Backend are hosted on the same domain
