@@ -1,5 +1,6 @@
 import { FormType } from "./pages/Register";
 import { SignInFormType } from "./pages/SignIn";
+import { HotelType } from "../../backend/src/models/hotel";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 // this project The Frontend and Backend are hosted on the same domain
@@ -26,7 +27,6 @@ export const verifyToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     method: "GET",
     credentials: "include",
-
   });
 
   if (!response.ok) {
@@ -76,6 +76,18 @@ export const addMyHotel = async (hotelFormData: FormData) => {
 
   if (!res.ok) {
     throw new Error("Error adding hotel");
+  }
+
+  return res.json();
+};
+
+export const fetchMyHotels = async (): Promise<HotelType[]> => {
+  const res = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error("Error Fetcing hotels");
   }
 
   return res.json();
