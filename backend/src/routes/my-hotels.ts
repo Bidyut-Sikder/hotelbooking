@@ -16,6 +16,7 @@ const upload = multer({
   },
 });
 
+//add-hotel
 router.post(
   "/",
   verifyToken,
@@ -31,8 +32,9 @@ router.post(
         const base64 = image.buffer.toString("base64");
         // const base64 = Buffer.from(image.buffer).toString("base64");
         const uploadedImage = await cloudinary.uploader.upload(
-          `data:${image.mimetype};base64,${base64}`,
+          `data:${image.mimetype};base64,${base64}`, //image Path (dynamicaly stores image in memory)
           {
+            format: "webp",
             folder: "hotelBooking", //cloudinary images folder name
           }
         );
@@ -52,5 +54,18 @@ router.post(
     }
   }
 );
+
+//get-hotel
+
+router.get("/", verifyToken,async (req: Request, res: Response) => {
+  try {
+    const hotels = await HotelModel.find({userId:req.userId});
+    res.status(200).json(hotels);
+    return;
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching hotels" });
+    return;
+  }
+});
 
 export default router;
