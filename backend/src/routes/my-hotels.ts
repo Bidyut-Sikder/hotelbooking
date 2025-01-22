@@ -109,6 +109,8 @@ router.get("/:id", verifyToken, async (req: Request, res: Response) => {
 });
 
 //update-hotel-by-id
+//if i select new images then it will go throuhg the upload.array("imageFiles") and add it with other imageUrls
+// but if i delete any images then it will update the database only with the imageUrls field
 router.put(
   "/:id",
   verifyToken,
@@ -118,6 +120,7 @@ router.put(
 
     try {
       const updateHotelData: HotelType = req.body;
+ 
       updateHotelData.lastUpdated = new Date();
       const updatedHotel = await HotelModel.findOneAndUpdate(
         {
@@ -132,6 +135,7 @@ router.put(
         res.status(404).json({ message: "Hotel not found" });
         return;
       }
+ 
       const imageFiles = req.files as Express.Multer.File[];
       const updatedImagesUrls = await uploadToCloudinary(imageFiles);
       updatedHotel.imageUrls = [
@@ -150,3 +154,4 @@ router.put(
 );
 
 export default router;
+

@@ -11,9 +11,7 @@ const ImagesSection = () => {
 
   const existingImageUrls = watch("imageUrls");
 
-  // useEffect(() => {
-  //   setValue("imageFiles", existingImageUrls);
-  // }, [existingImageUrls]);
+
 
   const handleDelete = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
