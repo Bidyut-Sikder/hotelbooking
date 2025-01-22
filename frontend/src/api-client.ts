@@ -17,7 +17,7 @@ export const register = async (formData: FormType) => {
     body: JSON.stringify(formData),
   });
   const resData = await res.json();
- 
+
   if (!res.ok) {
     throw new Error(resData.message);
   }
@@ -106,15 +106,52 @@ export const fetchMyHotelById = async (hotelId: string) => {
 };
 
 export const updateMyHotelById = async (hotelFormData: FormData) => {
-  const res = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelFormData.get('id')}`, {
-    method: "PUT",
-    body: hotelFormData,
-    credentials: "include",
-  });
+  const res = await fetch(
+    `${API_BASE_URL}/api/my-hotels/${hotelFormData.get("id")}`,
+    {
+      method: "PUT",
+      body: hotelFormData,
+      credentials: "include",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Error updating hotel");
   }
 
+  return res.json();
+};
+
+type SearchParams = {
+  destination: string;
+  checkIn?: string;
+  checkOut?: string;
+  adultCount?: string;
+  childCount?: string;
+  hotelId?: string;
+  page?: string;
+};
+
+export const searchHotels = async (searchParams: SearchParams) => {
+  const queryParams = new URLSearchParams();
+
+  queryParams.append("destination", searchParams.destination || "");
+  queryParams.append("checkIn", searchParams.checkIn || "");
+  queryParams.append("checkOut", searchParams.checkOut || "");
+  queryParams.append("adultCount", searchParams.adultCount || "");
+  queryParams.append("childCount", searchParams.childCount || "");
+  queryParams.append("page", searchParams.page || "");
+
+  const res = await fetch(`${API_BASE_URL}/api/hotels/search?${queryParams}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error("Error searching hotels");
+  }
   return res.json();
 };

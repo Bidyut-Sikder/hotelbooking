@@ -11,10 +11,12 @@ router.get("/search", async (req: Request, res: Response) => {
       req.query.page ? req.query.page.toString() : "1"
     );
 
+
     const skip = (pageNumber - 1) * pageSize;
 
     const hotels = await HotelModel.find().skip(skip).limit(pageSize);
     const total = await HotelModel.countDocuments();
+
     const totalPages = Math.ceil(total / pageSize);
 
     const response: HotelSearchResponse = {
