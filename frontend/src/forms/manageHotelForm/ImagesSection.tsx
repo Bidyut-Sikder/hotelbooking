@@ -11,8 +11,6 @@ const ImagesSection = () => {
 
   const existingImageUrls = watch("imageUrls");
 
-
-
   const handleDelete = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     imageUrl: string
@@ -54,7 +52,10 @@ const ImagesSection = () => {
           className="w-full text-gray-700 font-normal "
           {...register("imageFiles", {
             validate: (images) => {
-              const totalLength = images.length + existingImageUrls?.length||0;
+             
+              let totalLength =images.length + (existingImageUrls?.length || 0);
+
+
               if (totalLength === 0) {
                 return "Please select at least one image";
               }

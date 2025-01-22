@@ -33,6 +33,7 @@ app.use(
       process.env.FRONTEND_URL as string,
       "https://hotelbooking-xi.vercel.app",
     ],
+
     // FrontEnd request {method: "POST", credentials:'include',} // sets cookies to every post request)
     credentials: true, // Allow sending cookies with requests
   })

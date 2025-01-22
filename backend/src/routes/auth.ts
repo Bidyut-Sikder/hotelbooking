@@ -12,6 +12,7 @@ router.post(
   "/login",
   userLoginCheckMiddleware,
   async (req: Request, res: Response) => {
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
@@ -40,7 +41,7 @@ router.post(
         }
       );
 
-      res.cookie("auth_token", token, {
+      res.cookie("auth_token", token, { 
         httpOnly: true,
         secure:true, //process.env.NODE_ENV === "production",
         sameSite: "none",
@@ -55,9 +56,10 @@ router.post(
       return;
     }
   }
-);
+); 
 
 router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
+ 
   // console.log(req.userId)
   res.status(200).send({ userId: req.userId });
   return;
