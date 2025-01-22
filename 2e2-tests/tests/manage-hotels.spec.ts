@@ -57,15 +57,15 @@ test.beforeEach(async ({ page }) => {
 // });
 
 // // Edit hotel
-// test("should edit hotels", async ({ page }) => {
-//   await page.goto(`${URL}/my-hotels`);
+test("should edit hotels", async ({ page }) => {
+  await page.goto(`${URL}/my-hotels`);
 
-//   await expect(page.getByText("My Hotels")).toBeVisible();
-//   await page.getByRole("link", { name: "View Details" }).first().click();
-//   await page.waitForSelector('[name="name"]', { state: "attached" });
-//   await page.locator('[name="name"]').fill("test hotel updated bidyut");
-//   await page.getByRole("button", { name: "Save" }).click();
-//   await expect(page.getByText("Hotel updated successfully")).toBeVisible();
+  await expect(page.getByText("My Hotels")).toBeVisible();
+  await page.getByRole("link", { name: "View Details" }).first().click();
+  await page.waitForSelector('[name="name"]', { state: "attached" });
+  await page.locator('[name="name"]').fill("test hotel updated bidyut");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Hotel updated successfully")).toBeVisible();
 
-//   //add hotels data.to make sure that hotels are displayed
-// });
+  //add hotels data.to make sure that hotels are displayed
+});
