@@ -4,11 +4,12 @@ import { searchHotels } from "../api-client";
 import { useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
+import StarRatingFilter from "../components/StarRatingFilter";
 
 const Search = () => {
   const search = useSearchContext();
   const [page, setPage] = useState(1);
-
+  const [selectedStars, setSelectedStars] = useState<string[]>([]);
 
   const searchParams = {
     destination: search.destination,
@@ -17,12 +18,30 @@ const Search = () => {
     adultCount: search.adultCount.toString(),
     childCount: search.childCount.toString(),
     page: page.toString(),
+    stars:selectedStars
   };
 
 
+  const handleStarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const starRating = event.target.value;
+    
+    setSelectedStars((previousStars) =>
+      //creates toggle functionality
+      event.target.checked
+        ? [...previousStars, starRating]
+        : previousStars.filter((star) => star !== starRating)
+    );
+  };
+
+
+
+
+
+  console.log(selectedStars);
+
   const { data } = useQuery(
     ["searchHotels", searchParams],
-    () => searchHotels(searchParams),
+    () => searchHotels(searchParams)
     // {
     //   // does not refetch after first load for certain time
     //   staleTime: 1000 * 60 * 5,
@@ -39,6 +58,10 @@ const Search = () => {
           <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
             Filter by:
           </h3>
+          <StarRatingFilter
+            selectedStars={selectedStars}
+            onChange={handleStarChange}
+          />
         </div>
       </div>
       <div className=" flex flex-col gap-5">

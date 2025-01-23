@@ -34,16 +34,16 @@ router.get("/search", async (req: Request, res: Response) => {
       .skip(skip)
       .limit(pageSize);
 
-    let total;
-    if (
-      req.query.destination === "" &&
-      req.query.adultCount === "1" &&
-      req.query.childCount === "0"
-    ) {
-      total = await HotelModel.countDocuments();
-    }
+    // let total;
+    // if (
+    //   req.query.destination === "" &&
+    //   req.query.adultCount === "1" &&
+    //   req.query.childCount === "0"
+    // ) {
+    //   total = await HotelModel.countDocuments();
+    // }
 
-    total = await HotelModel.countDocuments(query);
+    const total = await HotelModel.countDocuments(query);
 
     const totalPages = Math.ceil(total / pageSize);
 
@@ -66,6 +66,7 @@ router.get("/search", async (req: Request, res: Response) => {
 export default router;
 
 const constructSearchQuery = (queryParams: any) => {
+  // console.log(queryParams)
   const constructedQuery: any = {};
 
   if (queryParams.destination) {
@@ -91,34 +92,41 @@ const constructSearchQuery = (queryParams: any) => {
     constructedQuery.facilities = {
       $all: Array.isArray(queryParams.facilities)
         ? queryParams.facilities
-        : [queryParams.facilities],
+        : [queryParams.facilities],//if we do not put it in [] then it will work too
     };
   }
 
   if (queryParams.types) {
+    console.log(Array.isArray(queryParams.types));
     constructedQuery.type = {
       $in: Array.isArray(queryParams.types)
         ? queryParams.types
-        : [queryParams.types],
+        : [queryParams.types],//if we do not put it in [] then it will work too
     };
   }
 
   if (queryParams.stars) {
-    constructedQuery.starRating = { $eq: parseInt(queryParams.stars) };
+    console.log([parseInt(queryParams.stars)])
+    const starRatings = Array.isArray(queryParams.stars)
+      ? queryParams.stars
+      : [parseInt(queryParams.stars)];//if we do not put it in [] then it will work too
+
+    constructedQuery.starRating = { $in: starRatings };
   }
   if (queryParams.maxPrice) {
     constructedQuery.pricePerNight = { $lte: parseInt(queryParams.maxPrice) };
   }
 
-  // console.log(constructedQuery)
+  console.log(constructedQuery);
 
   return constructedQuery;
 };
-// constructSearchQuery({ destination: "ffd",
-//   adultCount: 2, childCount: 3 ,
-//   facilities:['facilty1','facility2'],
-//   types:['typp1','type2'],
-//   stars:"3",
-//   maxPrice:3
-
+// constructSearchQuery({
+//   destination: "ffd",
+//   adultCount: 2,
+//   childCount: 3,
+//   facilities: ["facilty1", "facility2"],
+//   types: "ff", //["typp1", "type2"],
+//   stars: ["3", "4"],
+//   maxPrice: 3,
 // });

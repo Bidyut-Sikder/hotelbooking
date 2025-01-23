@@ -150,6 +150,10 @@ export const searchHotels = async (searchParams: SearchParams) => {
   queryParams.append("maxPrice", searchParams.maxPrice || "");
   queryParams.append("sortOptions", searchParams.sortOptions || "");
 
+  // these are array of strings thats way we can use forEach loop
+  //if we do this if we select one facility it will send as a string but
+  //if we select multiple facilities it will send as an array of strings
+  
   searchParams.facilities?.forEach((facility) =>
     queryParams.append("facilities", facility)
   );
