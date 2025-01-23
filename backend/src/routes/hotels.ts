@@ -92,24 +92,22 @@ const constructSearchQuery = (queryParams: any) => {
     constructedQuery.facilities = {
       $all: Array.isArray(queryParams.facilities)
         ? queryParams.facilities
-        : [queryParams.facilities],//if we do not put it in [] then it will work too
+        : [queryParams.facilities], //if we do not put it in [] then it will work too
     };
   }
 
   if (queryParams.types) {
-    console.log(Array.isArray(queryParams.types));
     constructedQuery.type = {
       $in: Array.isArray(queryParams.types)
         ? queryParams.types
-        : [queryParams.types],//if we do not put it in [] then it will work too
+        : [queryParams.types], //if we do not put it in [] then it will work too
     };
   }
 
   if (queryParams.stars) {
-    console.log([parseInt(queryParams.stars)])
     const starRatings = Array.isArray(queryParams.stars)
       ? queryParams.stars
-      : [parseInt(queryParams.stars)];//if we do not put it in [] then it will work too
+      : [parseInt(queryParams.stars)]; //if we do not put it in [] then it will work too
 
     constructedQuery.starRating = { $in: starRatings };
   }
@@ -117,7 +115,7 @@ const constructSearchQuery = (queryParams: any) => {
     constructedQuery.pricePerNight = { $lte: parseInt(queryParams.maxPrice) };
   }
 
-  console.log(constructedQuery);
+  // console.log(constructedQuery);
 
   return constructedQuery;
 };

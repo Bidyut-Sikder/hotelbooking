@@ -5,12 +5,13 @@ import { useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StarRatingFilter";
+import HotelTypesFilter from "../components/HotelTypesFilter";
 
 const Search = () => {
   const search = useSearchContext();
   const [page, setPage] = useState(1);
   const [selectedStars, setSelectedStars] = useState<string[]>([]);
-
+  const [selectedHotelTypes, setSelectedHotelTypes] = useState<string[]>([]);
   const searchParams = {
     destination: search.destination,
     checkIn: search.checkIn.toISOString(),
@@ -18,13 +19,12 @@ const Search = () => {
     adultCount: search.adultCount.toString(),
     childCount: search.childCount.toString(),
     page: page.toString(),
-    stars:selectedStars
+    stars: selectedStars,
+    types:selectedHotelTypes,
   };
-
 
   const handleStarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const starRating = event.target.value;
-    
     setSelectedStars((previousStars) =>
       //creates toggle functionality
       event.target.checked
@@ -33,9 +33,15 @@ const Search = () => {
     );
   };
 
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const hotelType = event.target.value;
 
-
-
+    setSelectedHotelTypes((prev) =>
+      event.target.checked
+        ? [...prev, hotelType]
+        : prev.filter((hotel) => hotel !== hotelType)
+    );
+  };
 
   console.log(selectedStars);
 
@@ -61,6 +67,10 @@ const Search = () => {
           <StarRatingFilter
             selectedStars={selectedStars}
             onChange={handleStarChange}
+          />
+          <HotelTypesFilter
+            onChange={handleFilterChange}
+            selectedHotelTypes={selectedHotelTypes}
           />
         </div>
       </div>
