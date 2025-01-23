@@ -9,7 +9,7 @@ const Search = () => {
   const search = useSearchContext();
   const [page, setPage] = useState(1);
 
-  console.log(setPage);
+
   const searchParams = {
     destination: search.destination,
     checkIn: search.checkIn.toISOString(),
@@ -19,16 +19,17 @@ const Search = () => {
     page: page.toString(),
   };
 
+
   const { data } = useQuery(
     ["searchHotels", searchParams],
     () => searchHotels(searchParams),
-    {
-      // does not refetch after first load for certain time
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 60,
-      refetchOnWindowFocus: false,
-      enabled: !!searchParams,
-    }
+    // {
+    //   // does not refetch after first load for certain time
+    //   staleTime: 1000 * 60 * 5,
+    //   cacheTime: 1000 * 60 * 60,
+    //   refetchOnWindowFocus: false,
+    //   enabled: !!searchParams,
+    // }
   );
 
   return (
