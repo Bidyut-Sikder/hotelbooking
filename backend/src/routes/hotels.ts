@@ -90,10 +90,14 @@ const constructSearchQuery = (queryParams: any) => {
 
   if (queryParams.facilities) {
     constructedQuery.facilities = {
-      $all: Array.isArray(queryParams.facilities)
-        ? queryParams.facilities
-        : [queryParams.facilities], //if we do not put it in [] then it will work too
+      $all: queryParams.facilities,
+      //if we do not put it in [] then it will work too
     };
+    // constructedQuery.facilities = {
+    //   $all: Array.isArray(queryParams.facilities)
+    //     ? queryParams.facilities
+    //     : [queryParams.facilities], //if we do not put it in [] then it will work too
+    // };
   }
 
   if (queryParams.types) {
