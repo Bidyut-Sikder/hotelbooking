@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StarRatingFilter";
 import HotelTypesFilter from "../components/HotelTypesFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
+import PriceFilter from "../components/PriceFilter";
 
 const Search = () => {
   const search = useSearchContext();
@@ -14,6 +15,7 @@ const Search = () => {
   const [selectedStars, setSelectedStars] = useState<string[]>([]);
   const [selectedHotelTypes, setSelectedHotelTypes] = useState<string[]>([]);
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>();
 
   const searchParams = {
     destination: search.destination,
@@ -25,6 +27,7 @@ const Search = () => {
     stars: selectedStars,
     types: selectedHotelTypes,
     facilities: selectedFacilities,
+    maxPrice:maxPrice?.toString()
   };
 
   const handleStarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,13 +52,14 @@ const Search = () => {
 
   const handleFacilityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const facility = event.target.value;
-
     setSelectedFacilities((prev) =>
       event.target.checked
         ? [...prev, facility]
         : prev.filter((prevFacility) => prevFacility !== facility)
     );
   };
+
+
 
   const { data } = useQuery(
     ["searchHotels", searchParams],
@@ -88,6 +92,7 @@ const Search = () => {
             onChange={handleFacilityChange}
             selectedFacilities={selectedFacilities}
           />
+          <PriceFilter selectedPrice={maxPrice} onChange={(value?:number)=>setMaxPrice(value)}  />
         </div>
       </div>
       <div className=" flex flex-col gap-5">

@@ -116,6 +116,7 @@ const constructSearchQuery = (queryParams: any) => {
     constructedQuery.starRating = { $in: starRatings };
   }
   if (queryParams.maxPrice) {
+
     constructedQuery.pricePerNight = { $lte: parseInt(queryParams.maxPrice) };
   }
 
