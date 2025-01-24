@@ -1,4 +1,4 @@
-import { check, body } from "express-validator";
+import { check, body, param } from "express-validator";
 
 export const userRegisterCheckMiddleware = [
   check("firstName", "First Name is required.")
@@ -64,3 +64,6 @@ export const validateHotelData = [
     .withMessage("Price per night is required."),
 
 ];
+
+
+export const validateHotelId=[param("id").notEmpty().withMessage("Hotel Id is required.")]

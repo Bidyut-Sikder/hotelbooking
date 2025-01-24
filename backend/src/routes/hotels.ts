@@ -1,8 +1,35 @@
 import express, { Request, Response } from "express";
 import HotelModel from "../models/hotel";
 import { HotelSearchResponse } from "../shared/types";
+import { param, validationResult } from "express-validator";
+import { validateHotelId } from "../middleware/middleware";
 
 const router = express.Router();
+
+router.get("/:id", validateHotelId, async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+  try {
+    const id = req.params.id.toString();
+    const hotel = await HotelModel.findById(id);
+    if (!hotel) {
+      res.status(404).json({ message: "Hotel not found" });
+      return;
+    }
+    res.json(hotel);
+    return;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+    return;
+  }
+});
+
+//search facilities
 
 router.get("/search", async (req: Request, res: Response) => {
   try {
@@ -28,7 +55,6 @@ router.get("/search", async (req: Request, res: Response) => {
       default:
         break;
     }
-
 
     const hotels = await HotelModel.find(query)
       .sort(sortOption)
@@ -117,7 +143,6 @@ const constructSearchQuery = (queryParams: any) => {
     constructedQuery.starRating = { $in: starRatings };
   }
   if (queryParams.maxPrice) {
-
     constructedQuery.pricePerNight = { $lte: parseInt(queryParams.maxPrice) };
   }
 

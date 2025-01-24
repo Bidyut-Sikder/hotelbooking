@@ -105,6 +105,7 @@ const Search = () => {
           </span>
 
           <select
+          className="p-2 border rounded-md"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >
