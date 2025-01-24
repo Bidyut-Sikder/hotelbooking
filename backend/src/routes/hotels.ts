@@ -23,11 +23,12 @@ router.get("/search", async (req: Request, res: Response) => {
         sortOptions = { pricePerNight: 1 };
         break;
       case "pricePerNightDSC":
-        sortOptions = { starRating: -1 };
+        sortOptions = { pricePerNight: -1 };
         break;
       default:
         break;
     }
+
 
     const hotels = await HotelModel.find(query)
       .sort(sortOptions)

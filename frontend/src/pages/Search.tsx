@@ -16,7 +16,7 @@ const Search = () => {
   const [selectedHotelTypes, setSelectedHotelTypes] = useState<string[]>([]);
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
-
+  const [sortOption, setSortOption] = useState<string | undefined>(undefined);
   const searchParams = {
     destination: search.destination,
     checkIn: search.checkIn.toISOString(),
@@ -27,7 +27,8 @@ const Search = () => {
     stars: selectedStars,
     types: selectedHotelTypes,
     facilities: selectedFacilities,
-    maxPrice:maxPrice?.toString()
+    maxPrice: maxPrice?.toString(),
+    sortOption: sortOption?.toString(),
   };
 
   const handleStarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,8 +59,6 @@ const Search = () => {
         : prev.filter((prevFacility) => prevFacility !== facility)
     );
   };
-
-
 
   const { data } = useQuery(
     ["searchHotels", searchParams],
@@ -92,7 +91,10 @@ const Search = () => {
             onChange={handleFacilityChange}
             selectedFacilities={selectedFacilities}
           />
-          <PriceFilter selectedPrice={maxPrice} onChange={(value?:number)=>setMaxPrice(value)}  />
+          <PriceFilter
+            selectedPrice={maxPrice}
+            onChange={(value?: number) => setMaxPrice(value)}
+          />
         </div>
       </div>
       <div className=" flex flex-col gap-5">
@@ -101,6 +103,19 @@ const Search = () => {
             {data?.pagination.total} Hotels found.
             {search.destination ? ` in ${search.destination}` : ""}
           </span>
+
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="starRating">Star Rating</option>
+            <option value="pricePerNightASC">
+              Price Per Night (Low to High)
+            </option>
+            <option value="pricePerNightDSC">
+              Price Per Night (High to Low)
+            </option>
+          </select>
         </div>
         {data &&
           data.data.map((hotel: any) => (
