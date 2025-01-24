@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export type SignInFormType = {
@@ -82,7 +82,10 @@ function SignIn() {
         </label>
         <span className="flex items-center justify-between">
           <span className="text-sm">
-            Not Registered? <Link className="underline" to="/register">Register here.</Link>
+            Not Registered?{" "}
+            <Link className="underline" to="/register">
+              Register here.
+            </Link>
           </span>
           <button
             type="submit"

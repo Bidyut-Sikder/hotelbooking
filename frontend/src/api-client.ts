@@ -177,7 +177,7 @@ export const searchHotels = async (searchParams: SearchParams) => {
 };
 
 //unauthorized
-export const fetchHotelById = async (hotelId: string) => {
+export const fetchHotelById = async (hotelId: string):Promise<HotelType> => {
   const res = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
   if (!res.ok) {
     throw new Error("Error fetching hotel by id");
