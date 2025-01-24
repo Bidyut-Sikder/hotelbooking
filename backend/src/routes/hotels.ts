@@ -14,16 +14,16 @@ router.get("/search", async (req: Request, res: Response) => {
 
     const query = constructSearchQuery(req.query);
 
-    let sortOptions = {};
+    let sortOption = {};
     switch (req.query.sortOption) {
       case "starRating":
-        sortOptions = { starRating: -1 };
+        sortOption = { starRating: -1 };
         break;
       case "pricePerNightASC":
-        sortOptions = { pricePerNight: 1 };
+        sortOption = { pricePerNight: 1 };
         break;
       case "pricePerNightDSC":
-        sortOptions = { pricePerNight: -1 };
+        sortOption = { pricePerNight: -1 };
         break;
       default:
         break;
@@ -31,7 +31,7 @@ router.get("/search", async (req: Request, res: Response) => {
 
 
     const hotels = await HotelModel.find(query)
-      .sort(sortOptions)
+      .sort(sortOption)
       .skip(skip)
       .limit(pageSize);
 
