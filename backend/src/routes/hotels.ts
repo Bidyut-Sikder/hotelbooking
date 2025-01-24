@@ -6,29 +6,6 @@ import { validateHotelId } from "../middleware/middleware";
 
 const router = express.Router();
 
-router.get("/:id", validateHotelId, async (req: Request, res: Response) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    res.status(400).json({ errors: errors.array() });
-    return;
-  }
-  try {
-    const id = req.params.id.toString();
-    const hotel = await HotelModel.findById(id);
-    if (!hotel) {
-      res.status(404).json({ message: "Hotel not found" });
-      return;
-    }
-    res.json(hotel);
-    return;
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-    return;
-  }
-});
-
 //search facilities
 
 router.get("/search", async (req: Request, res: Response) => {
@@ -90,6 +67,29 @@ router.get("/search", async (req: Request, res: Response) => {
   }
 });
 
+//getbyid(this should be placed under search facilities)
+router.get("/:id", validateHotelId, async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+  try {
+    const id = req.params.id.toString();
+    const hotel = await HotelModel.findById(id);
+    if (!hotel) {
+      res.status(404).json({ message: "Hotel not found" });
+      return;
+    }
+    res.json(hotel);
+    return;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+    return;
+  }
+});
 export default router;
 
 const constructSearchQuery = (queryParams: any) => {

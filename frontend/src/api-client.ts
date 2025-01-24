@@ -122,6 +122,7 @@ export const updateMyHotelById = async (hotelFormData: FormData) => {
   return res.json();
 };
 
+//search api calls
 type SearchParams = {
   destination: string;
   checkIn?: string;
@@ -153,7 +154,7 @@ export const searchHotels = async (searchParams: SearchParams) => {
   // these are array of strings thats way we can use forEach loop
   //if we do this if we select one facility it will send as a string but
   //if we select multiple facilities it will send as an array of strings
-  
+
   searchParams.facilities?.forEach((facility) =>
     queryParams.append("facilities", facility)
   );
@@ -171,6 +172,15 @@ export const searchHotels = async (searchParams: SearchParams) => {
 
   if (!res.ok) {
     throw new Error("Error searching hotels");
+  }
+  return res.json();
+};
+
+//unauthorized
+export const fetchHotelById = async (hotelId: string) => {
+  const res = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
+  if (!res.ok) {
+    throw new Error("Error fetching hotel by id");
   }
   return res.json();
 };

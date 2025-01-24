@@ -87,7 +87,7 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
-//get-hotel-by-id
+//get-my-hotel-by-id
 router.get("/:id", verifyToken, async (req: Request, res: Response) => {
   const id = req.params.id.toString();
 
