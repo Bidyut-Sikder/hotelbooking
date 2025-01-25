@@ -21,3 +21,19 @@ test("should show hotel search results ", async ({ page }) => {
   await expect(page.getByText("Hotels found. in Dhaka")).toBeVisible();
   await expect(page.getByText("test hotel updated bidyut")).toBeVisible();
 });
+
+test("should show book now button ", async ({ page }) => {
+  await page.goto(URL);
+  await page.getByPlaceholder("Where are you going?").fill("Dhaka");
+  await page.getByRole("button", { name: "Search" }).click();
+  await expect(page.getByText("Hotels found. in Dhaka")).toBeVisible();
+  await expect(page.getByText("test hotel updated bidyut")).toBeVisible();
+
+  await page.getByText("View More").first().click();
+  await expect(page).toHaveURL(/detail/);
+  await expect(page.getByRole("button", { name: "Book Now" })).toBeVisible();
+
+
+
+
+});

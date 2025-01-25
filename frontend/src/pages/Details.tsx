@@ -18,8 +18,8 @@ const Details = () => {
     <div className="space-y-6">
       <div>
         <span className="flex">
-          {Array.from({ length: data.starRating }).map(() => (
-            <AiFillStar className="fill-yellow-400" />
+          {Array.from({ length: data.starRating }).map((_, i) => (
+            <AiFillStar key={i} className="fill-yellow-400" />
           ))}
         </span>
         <h1 className="text-3xl font-bold">{data.name}</h1>
@@ -49,8 +49,14 @@ const Details = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
         <div className="whitespace-pre-line">{data.description}</div>
-     
-     <div className="h-fit"> <GuestInfoForm hotelId={data._id} pricePerNight={data.pricePerNight} /></div>
+
+        <div className="h-fit">
+          {" "}
+          <GuestInfoForm
+            hotelId={data._id}
+            pricePerNight={data.pricePerNight}
+          />
+        </div>
       </div>
     </div>
   );
