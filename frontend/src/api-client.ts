@@ -175,9 +175,29 @@ export const searchHotels = async (searchParams: SearchParams) => {
   }
   return res.json();
 };
+export type UserType = {
+  _id: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+};
+export const fetchCurrentUser = async (): Promise<UserType> => {
+  const res = await fetch(`${API_BASE_URL}/api/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  if (!res.ok) {
+    throw new Error("Error fetching hotel by id");
+  }
+  return res.json();
+};
 
 //unauthorized
-export const fetchHotelById = async (hotelId: string):Promise<HotelType> => {
+export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
   const res = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
   if (!res.ok) {
     throw new Error("Error fetching hotel by id");

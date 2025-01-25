@@ -4,8 +4,25 @@ import jwt from "jsonwebtoken";
 
 import { validationResult } from "express-validator";
 import { userRegisterCheckMiddleware } from "../middleware/middleware";
+import { verifyToken } from "../middleware/auth";
 
 const router = express.Router();
+
+router.get("/me", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const user = await UserModel.findById(req.userId).select("-password");
+
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+    return;
+  }
+});
 
 router.post(
   "/register",
@@ -34,10 +51,9 @@ router.post(
       );
       res.cookie("auth_token", token, {
         httpOnly: true,
-        secure:true, // process.env.NODE_ENV === "production", // true only in production
+        secure: true, // process.env.NODE_ENV === "production", // true only in production
         sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000, 
-
+        maxAge: 24 * 60 * 60 * 1000,
       });
       res.status(201).json({ message: "User created successfully." });
 
