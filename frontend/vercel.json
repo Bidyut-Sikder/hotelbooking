@@ -3,6 +3,9 @@
         {
             "source":"/(.*)",
             "destination":"/"
+        },
+        { "source": "/edit-hotel/:path*",
+         "destination": "/"
         }
     ]
 }
