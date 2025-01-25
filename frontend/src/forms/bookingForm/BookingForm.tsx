@@ -5,17 +5,17 @@ type Props = {
   currentUser: UserType;
 };
 
-type BookingFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-};
+// type BookingFormData = {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+// };
 
 const BookingForm = ({ currentUser }: Props) => {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
+    // handleSubmit,
+    // formState: { errors },
   } = useForm({defaultValues:{
     firstName:currentUser.firstName,
     lastName:currentUser.lastName,

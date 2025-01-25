@@ -22,9 +22,17 @@ function SignOutButton() {
   });
 
   return (
+    // <button
+    //   className="text-blue-600 px-3 font-bold bg-white hover:bg-gray-100"
+    //   onClick={() => mutation.mutate()}
+    // >
+    //   SignOut
+    // </button>
+
     <button
-      className="text-blue-600 px-3 font-bold bg-white hover:bg-gray-100"
+      className="hover:bg-gray-100 flex bg-white font-bold items-center text-blue-600 px-3 py-1 text-sm sm:text-base rounded hover:text-green-500"
       onClick={() => mutation.mutate()}
+      data-discover="true"
     >
       SignOut
     </button>

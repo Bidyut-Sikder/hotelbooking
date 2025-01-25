@@ -10,6 +10,7 @@ import authRoutes from "./routes/auth";
 import myhotelRoutes from "./routes/my-hotels";
 import { v2 as cloudinary } from "cloudinary";
 import hotelRouter from "./routes/hotels";
+import paymentRoutes from "./routes/payment";
 
 // Cloudinary configuration
 cloudinary.config({
@@ -43,6 +44,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/my-hotels", myhotelRoutes);
 app.use("/api/hotels", hotelRouter);
+app.use("/api/payments", paymentRoutes);
 
 // error handler
 export class CustomError extends Error {

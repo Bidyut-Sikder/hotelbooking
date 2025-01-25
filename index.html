@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <div class="bg-blue-800 py-6">
+          <div class="container mx-auto flex flex-wrap justify-between items-center px-4 sm:px-6">
+            <span class="text-2xl sm:text-3xl text-white font-bold tracking-tight">
+              <a href="/" data-discover="true">Hotelbooking.com</a>
+            </span>
+            <div class="flex flex-wrap space-x-2 mt-2 sm:mt-0">
+              <a class="hover:bg-gray-100 flex bg-white font-bold items-center text-blue-600 px-3 py-1 text-sm sm:text-base rounded hover:text-green-500" href="/sign-in" data-discover="true">
+                Sign In
+              </a>
+              <a class="hover:bg-gray-100 flex bg-white font-bold items-center text-blue-600 px-3 py-1 text-sm sm:text-base rounded hover:text-green-500" href="/register" data-discover="true">
+                Register
+              </a>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Hero Section -->
+        <div class="bg-blue-800 py-6 px-4 sm:px-6 text-center">
+          <div class="container mx-auto">
+            <h1 class="text-3xl sm:text-5xl text-white font-bold leading-tight">
+              Find your next stay.
+            </h1>
+            <p class="text-lg sm:text-2xl text-white mt-2">
+              Discover the best vacation rentals, hotels, and activities.
+            </p>
+          </div>
+        </div>
+      
+        <!-- Search Form -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <form class="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4">
+            <!-- Destination Input -->
+            <div class="flex flex-row items-center bg-white p-2 rounded">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                class="mr-2"
+                height="25"
+                width="25"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path d="M19.3 16.9c.4-.7.7-1.5.7-2.4 0-2.5-2-4.5-4.5-4.5S11 12 11 14.5s2 4.5 4.5 4.5c.9 0 1.7-.3 2.4-.7l3.2 3.2 1.4-1.4-3.2-3.2zm-3.8.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zM12 20v2C6.48 22 2 17.52 2 12S6.48 2 12 2c4.84 0 8.87 3.44 9.8 8h-2.07A8 8 0 0 0 15 4.59V5c0 1.1-.9 2-2 2h-2v2c0 .55-.45 1-1 1H8v2h2v3H9l-4.79-4.79C4.08 10.79 4 11.38 4 12c0 4.41 3.59 8 8 8z"></path>
+              </svg>
+              <input
+                type="text"
+                placeholder="Where are you going?"
+                class="text-sm w-full focus:outline-none"
+                value=""
+              />
+            </div>
+      
+            <!-- Guests Input -->
+            <div class="flex flex-wrap bg-white px-2 py-1 gap-2 rounded">
+              <label class="items-center flex">
+                Adults:
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  class="w-16 p-1 focus:outline-none font-bold text-center"
+                  value="1"
+                />
+              </label>
+              <label class="items-center flex">
+                Child:
+                <input
+                  type="number"
+                  min="0"
+                  max="20"
+                  class="w-16 p-1 focus:outline-none font-bold text-center"
+                  value="0"
+                />
+              </label>
+            </div>
+      
+            <!-- Check-In Date -->
+            <div>
+              <input
+                type="text"
+                placeholder="Check-in Date"
+                class="w-full bg-white p-2 rounded focus:outline-none"
+                value="25/01/2025"
+              />
+            </div>
+      
+            <!-- Check-Out Date -->
+            <div>
+              <input
+                type="text"
+                placeholder="Check-out Date"
+                class="w-full bg-white p-2 rounded focus:outline-none"
+                value="25/01/2025"
+              />
+            </div>
+      
+            <!-- Buttons -->
+            <div class="flex gap-2">
+              <button class="w-1/2 bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-500">
+                Search
+              </button>
+              <button class="w-1/2 bg-red-600 text-white py-2 rounded font-bold hover:bg-red-500">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+      
+        <!-- Filters and Hotels -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+          <div class="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+            <!-- Filters -->
+            <div class="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
+              <div class="space-y-5">
+                <h3 class="text-lg font-semibold border-b border-slate-300 pb-5">Filter by:</h3>
+                <!-- Add your filters here -->
+              </div>
+            </div>
+      
+            <!-- Hotels -->
+            <div class="flex flex-col gap-5">
+              <div class="flex justify-between items-center">
+                <span class="text-lg sm:text-xl font-bold">9 Hotels found.</span>
+                <select class="p-2 border rounded-md text-sm">
+                  <option value="starRating">Star Rating</option>
+                  <option value="pricePerNightASC">Price (Low to High)</option>
+                  <option value="pricePerNightDSC">Price (High to Low)</option>
+                </select>
+              </div>
+              <!-- Hotel Cards -->
+              <div class="border border-slate-300 rounded-lg p-4">
+                <h4 class="font-bold text-lg">Example Hotel</h4>
+                <p class="text-sm">Details here...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </body>
+</html>

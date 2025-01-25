@@ -34,7 +34,7 @@ const Booking = () => {
   if (!hotel) return <div>Loading...</div>;
   return (
     <div className="grid md:grid-cols-[1fr_2fr]">
-      <div className="bg-green-200 ">
+     
         <BookingDetailsSummary
           checkIn={search.checkIn}
           checkOut={search.checkOut}
@@ -43,7 +43,7 @@ const Booking = () => {
           numberOfNights={numberOfNights}
           hotel={hotel}
         />
-      </div>
+
 
       <BookingForm currentUser={data} />
     </div>

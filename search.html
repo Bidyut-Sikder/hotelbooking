@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>search page</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <!-- <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+      <div class="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+        <div class="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
+          <div class="space-y-5">
+            <h3 class="text-lg font-semibold border-b border-slate-300 pb-5">
+              Filter by:
+            </h3>
+            <div class="border-b border-slate-300 pb-5">
+              <h4 class="text-md font-semibold mb-2">Property Rating</h4>
+              <label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="1" /><span>
+                  1 Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="2" /><span>
+                  2 Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="3" /><span>
+                  3 Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="4" /><span>
+                  4 Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="5" /><span>
+                  5 Stars</span
+                ></label
+              >
+            </div>
+            <div class="border-b border-slate-300 pb-5">
+              <h4 class="text-md font-semibold mb-2">Hotel Type</h4>
+              <label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Budget" /><span>
+                  Budget Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Boutique"
+                /><span> Boutique Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Luxury" /><span>
+                  Luxury Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Ski Resort"
+                /><span> Ski Resort Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Business"
+                /><span> Business Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Family" /><span>
+                  Family Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Romantic"
+                /><span> Romantic Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Hiking Resort"
+                /><span> Hiking Resort Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Cabin" /><span>
+                  Cabin Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Beach Resort"
+                /><span> Beach Resort Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Golf Resort"
+                /><span> Golf Resort Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Motel" /><span>
+                  Motel Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="All Inclusive"
+                /><span> All Inclusive Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Pet Friendly"
+                /><span> Pet Friendly Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Self Catering"
+                /><span> Self Catering Stars</span></label
+              >
+            </div>
+            <div class="border-b border-slate-300 pb-5">
+              <h4 class="text-md font-semibold mb-2">Facilities</h4>
+              <label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Free WiFi"
+                /><span> Free WiFi Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Parking" /><span>
+                  Parking Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Airport Shuttle"
+                /><span> Airport Shuttle Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Family Rooms"
+                /><span> Family Rooms Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Non-Smoking Rooms"
+                /><span> Non-Smoking Rooms Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Outdoor Pool"
+                /><span> Outdoor Pool Stars</span></label
+              ><label class="flex items-center space-x-2"
+                ><input type="checkbox" class="rounded" value="Spa" /><span>
+                  Spa Stars</span
+                ></label
+              ><label class="flex items-center space-x-2"
+                ><input
+                  type="checkbox"
+                  class="rounded"
+                  value="Fitness Center"
+                /><span> Fitness Center Stars</span></label
+              >
+            </div>
+            <div>
+              <h4 class="text-md font-semibold mb-2">Max Price</h4>
+              <select
+                class="w-full p-2 border-gray-300 border rounded-md"
+                id=""
+              >
+                <option value="">Select Price</option>
+                <option value="50">50</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="500">500</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5">
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold">9 Hotels found.</span
+            ><select class="p-2 border rounded-md">
+              <option value="starRating">Star Rating</option>
+              <option value="pricePerNightASC">
+                Price Per Night (Low to High)
+              </option>
+              <option value="pricePerNightDSC">
+                Price Per Night (High to Low)
+              </option>
+            </select>
+          </div>
+          <div
+            class="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8"
+          >
+            <div class="w-full h-[300px]">
+              <img
+                src="https://res.cloudinary.com/doozndhqq/image/upload/v1737527357/hotelBooking/huiuw86a728ds4q7zfes.webp"
+                alt="images here"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="grid grid-rows-[1fr_2fr_1fr]">
+              <div>
+                <div class="flex items-center">
+                  <span class="flex"
+                    ><svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 1024 1024"
+                      class="fill-yellow-400"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      ></path></svg
+                    ><svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 1024 1024"
+                      class="fill-yellow-400"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      ></path></svg
+                    ><svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 1024 1024"
+                      class="fill-yellow-400"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      ></path></svg></span
+                  ><span class="ml-1 text-sm">Budget</span>
+                </div>
+                <a
+                  class="text-2xl font-bold cursor-pointer"
+                  href="/detail/678dd0216e0654bff3bccef8"
+                  data-discover="true"
+                  >test hotel updated bidyut</a
+                >
+              </div>
+              <div>
+                <div class="line-clamp-4">
+                  An event handler is a block of code or a function that
+                  executes in response to a specific event in a program. Events
+                  can be triggered by user actions (e.g., clicking a button,
+                  typing in a text box, or moving a mouse), system changes
+                  (e.g., page load), or programmatic events (e.g., a custom
+                  event dispatch).An event handler is a block of code or a
+                  function that executes in response to a specific event in a
+                  program. Events can be triggered by user actions (e.g.,
+                  clicking a button, typing in a text box, or moving a mouse),
+                  system changes (e.g., page load), or programmatic events
+                  (e.g., a custom event dispatch).
+                </div>
+              </div>
+              <div class="grid grid-cols-2 items-end whitespace-nowrap">
+                <div class="flex items-center gap-1">
+                  <span
+                    class="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap"
+                    >Free WiFi</span
+                  ><span
+                    class="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap"
+                    >Parking</span
+                  ><span
+                    class="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap"
+                    >Airport Shuttle</span
+                  ><span class="text-sm">+5 more</span>
+                </div>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="font-bold">$200</span
+                  ><a
+                    class="bg-blue-600 text-white h-full p-2 hover:bg-blue-500 font-bold text-xl max-w-fit"
+                    href="/detail/678dd0216e0654bff3bccef8"
+                    data-discover="true"
+                    >View More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8"
+          >
+            <div class="w-full h-[300px]">
+              <img
+                src="https://res.cloudinary.com/doozndhqq/image/upload/v1737347259/hotelBooking/s5vaosag2dgr5q7oyrmw.png"
+                alt="images here"
+                class="w-full h-full object-cover object-center"
+              />
+            </div>
+            <div class="grid grid-rows-[1fr_2fr_1fr]">
+              <div>
+                <div class="flex items-center">
+                  <span class="flex"
+                    ><svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 1024 1024"
+                      class="fill-yellow-400"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      ></path></svg
+                    ><svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 1024 1024"
+                      class="fill-yellow-400"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      ></path></svg></span
+                  ><span class="ml-1 text-sm">Boutique</span>
+                </div>
+                <a
+                  class="text-2xl font-bold cursor-pointer"
+                  href="/detail/678dd0bd6e0654bff3bccefa"
+                  data-discover="true"
+                  >fddf@gmailc.com</a
+                >
+              </div>
+              <div><div class="line-clamp-4">fdfdffd</div></div>
+              <div class="grid grid-cols-2 items-end whitespace-nowrap">
+                <div class="flex items-center gap-1">
+                  <span
+                    class="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap"
+                    >Free WiFi</span
+                  ><span class="text-sm"></span>
+                </div>
+                <div class="flex flex-col items-end gap-1">
+                  <span class="font-bold">$33</span
+                  ><a
+                    class="bg-blue-600 text-white h-full p-2 hover:bg-blue-500 font-bold text-xl max-w-fit"
+                    href="/detail/678dd0bd6e0654bff3bccefa"
+                    data-discover="true"
+                    >View More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-center">
+              <ul class="flex border border-slate-300">
+                <li class="px-2 py-1 bg-gray-200"><button>1</button></li>
+                <li class="px-2 py-1"><button>2</button></li>
+                <li class="px-2 py-1"><button>3</button></li>
+                <li class="px-2 py-1"><button>4</button></li>
+                <li class="px-2 py-1"><button>5</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="container mx-auto px-2 sm:px-4 lg:px-8 py-6 flex-1">
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-[250px_1fr]">
+        <!-- Sidebar -->
+        <div class="rounded-lg border border-slate-300 p-4 h-fit  top-10">
+          <div class="space-y-5">
+            <h3 class="text-md font-semibold border-b border-slate-300 pb-3">
+              Filter by:
+            </h3>
+            <!-- Property Rating -->
+            <div class="border-b border-slate-300 pb-3">
+              <h4 class="text-sm font-semibold mb-2">Property Rating</h4>
+              <div class="flex flex-wrap gap-2">
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="1" />
+                  <span>1 Star</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="2" />
+                  <span>2 Stars</span>
+                </label>
+                <!-- Add similar labels for other stars -->
+              </div>
+            </div>
+            <!-- Hotel Type -->
+            <div class="border-b border-slate-300 pb-3">
+              <h4 class="text-sm font-semibold mb-2">Hotel Type</h4>
+              <div class="flex flex-wrap gap-2">
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Budget" />
+                  <span>Budget</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Luxury" />
+                  <span>Luxury</span>
+                </label>
+                <!-- Add similar labels for other types -->
+              </div>
+            </div>
+            <!-- Facilities -->
+            <div class="border-b border-slate-300 pb-3">
+              <h4 class="text-sm font-semibold mb-2">Facilities</h4>
+              <div class="flex flex-wrap gap-2">
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Free WiFi" />
+                  <span>Free WiFi</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm">
+                  <input type="checkbox" class="rounded" value="Parking" />
+                  <span>Parking</span>
+                </label>
+                <!-- Add similar labels for other facilities -->
+              </div>
+            </div>
+            <!-- Max Price -->
+            <div>
+              <h4 class="text-sm font-semibold mb-2">Max Price</h4>
+              <select
+                class="w-full p-2 border-gray-300 border rounded-md text-sm"
+              >
+                <option value="">Select Price</option>
+                <option value="50">50</option>
+                <option value="200">200</option>
+                <!-- Add other price options -->
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Main Content -->
+       <div class="flex flex-col gap-5">
+            <div class="flex justify-between items-center">
+              <span class="text-lg font-bold">9 Hotels found.</span>
+              <select class="p-2 border rounded-md text-sm">
+                <option value="starRating">Star Rating</option>
+                <option value="pricePerNightASC">Price: Low to High</option>
+                <option value="pricePerNightDSC">Price: High to Low</option>
+              </select>
+            </div>
+            <div
+              class="grid grid-cols-1 gap-5 border border-slate-300 rounded-lg p-4 xl:grid-cols-[2fr_3fr]"
+            >
+              <div class="w-full h-48">
+                <img
+                  src="https://res.cloudinary.com/doozndhqq/image/upload/v1737527357/hotelBooking/huiuw86a728ds4q7zfes.webp"
+                  alt="images here"
+                  class="w-full h-full object-cover object-center rounded-md"
+                />
+              </div>
+              <div class="flex flex-col gap-3">
+                <div>
+                  <div class="flex items-center">
+                    <span class="flex">
+                      <svg
+                        class="w-4 h-4 fill-yellow-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 1024 1024"
+                      >
+                        <path
+                          d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 0 0 .6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0 0 46.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                        />
+                      </svg>
+                    </span>
+                    <span class="ml-2 text-sm">Budget</span>
+                  </div>
+                  <a class="text-lg font-bold cursor-pointer">Test Hotel Updated</a>
+                </div>
+                <p class="text-sm line-clamp-3">
+                  An event handler is a block of code or a function that executes in
+                  response to a specific event in a program.
+                </p>
+              </div>
+            </div>
+          </div> 
+      </div>
+    </div>
+  </body>
+</html>
