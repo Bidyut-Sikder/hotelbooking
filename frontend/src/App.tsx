@@ -53,27 +53,26 @@ function App() {
             </Layout>
           }
         />
+        <Route
+          path="/success"
+          element={
+            <Layout>
+              <PaymentSuccess />
+            </Layout>
+          }
+        />
+        <Route
+          path="/failed"
+          element={
+            <Layout>
+              <PaymentFail />
+            </Layout>
+          }
+        />
 
         {/* Private routes */}
         {isLoggedIn && (
           <>
-            <Route
-              path="/success"
-              element={
-                <Layout>
-                  <PaymentSuccess />
-                </Layout>
-              }
-            />
-            <Route
-              path="/failed"
-              element={
-                <Layout>
-                  <PaymentFail />
-                </Layout>
-              }
-            />
-
             <Route
               path="/hotel/:id/booking"
               element={
