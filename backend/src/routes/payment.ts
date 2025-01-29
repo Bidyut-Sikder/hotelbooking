@@ -78,7 +78,7 @@ router.post("/success/:tranId", async (req, res) => {
     res.json({ message: "Something went wrong" });
   }
   // res.json({ message: "Payment was successful", data: req.body });
-  res.redirect(302, "https://hotelbooking-xi.vercel.app/payment/success");
+  res.redirect(302, "https://hotelbooking-xi.vercel.app/success");
 });
 
 router.post("/fail/:tranId", async (req, res) => {
@@ -90,7 +90,7 @@ router.post("/fail/:tranId", async (req, res) => {
       res.json({ message: "Something went wrong", data: req.body });
     }
     // res.json({ message: "Payment failed", data: req.body });
-    res.redirect(302, "https://hotelbooking-xi.vercel.app/payment/failed");
+    res.redirect(302, "https://hotelbooking-xi.vercel.app/failed");
     //res.redirect( 301, "localhost:5173/payment/fail");
   } catch (error) {
     res.json({ message: "Something went wrong" });

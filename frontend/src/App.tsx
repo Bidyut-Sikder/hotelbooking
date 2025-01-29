@@ -58,7 +58,7 @@ function App() {
         {isLoggedIn && (
           <>
             <Route
-              path="/payment/success"
+              path="/success"
               element={
                 <Layout>
                   <PaymentSuccess />
@@ -66,7 +66,7 @@ function App() {
               }
             />
             <Route
-              path="/payment/failed"
+              path="/failed"
               element={
                 <Layout>
                   <PaymentFail />
