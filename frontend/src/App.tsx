@@ -10,6 +10,8 @@ import Search from "./pages/Search";
 import Details from "./pages/Details";
 import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentFail from "./pages/PaymentFail";
 
 function App() {
   const { isLoggedIn } = useAppContext();
@@ -55,6 +57,23 @@ function App() {
         {/* Private routes */}
         {isLoggedIn && (
           <>
+            <Route
+              path="/payment/success"
+              element={
+                <Layout>
+                  <PaymentSuccess />
+                </Layout>
+              }
+            />
+            <Route
+              path="/payment/fail"
+              element={
+                <Layout>
+                  <PaymentFail />
+                </Layout>
+              }
+            />
+
             <Route
               path="/hotel/:id/booking"
               element={

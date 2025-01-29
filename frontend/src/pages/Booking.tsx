@@ -29,7 +29,7 @@ const Booking = () => {
     }
   }, [, search.checkIn, search.checkOut]);
 
-  console.log(numberOfNights);
+  // console.log(hotel);
   if (!data) return <div>Loading...</div>;
   if (!hotel) return <div>Loading...</div>;
   return (
@@ -42,10 +42,11 @@ const Booking = () => {
           childCount={search.childCount}
           numberOfNights={numberOfNights}
           hotel={hotel}
+          pricePerNight={hotel.pricePerNight}
         />
 
 
-      <BookingForm currentUser={data} />
+      <BookingForm   numberOfNights={numberOfNights}  pricePerNight={hotel.pricePerNight} currentUser={data} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSearchContext } from "../../context/SearchContext";
 import { useAppContext } from "../../context/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 type Props = {
   hotelId: string;
@@ -51,8 +52,9 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
       data.adultCount,
       data.childCount
     );
-    navigate("/sign-in",{ state: { from: location } });//storing data in navigation state to come back to this page
+    navigate("/sign-in", { state: { from: location } }); //storing data in navigation state to come back to this page
   };
+
   const directSubmit = (data: GuestInformData) => {
     search.saveSearchValues(
       "",
@@ -61,16 +63,95 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
       data.adultCount,
       data.childCount
     );
-    navigate(`/hotel/${hotelId}/booking`);
+    navigate(`/hotel/${hotelId}/booking/`);
   };
+  const [numberOfNights, setNumberOfNights] = useState<number>(0);
+
+  useEffect(() => {
+    const nights =
+      Math.abs(search.checkOut.getTime() - search.checkIn.getTime()) /
+      (1000 * 60 * 60 * 24);
+
+    setNumberOfNights(Math.ceil(nights));
+  }, [, search.checkIn, search.checkOut]);
+
+  console.log(numberOfNights);
 
   return (
     <div className="flex flex-col p-4 bg-blue-200 gap-4">
-      <h3 className="text-md font-bold"> ${pricePerNight}</h3>
+      <h3 className="text-md font-bold">
+        {" "}
+        {numberOfNights > 1 ? (
+          <span>
+            {" "}
+            {`$${pricePerNight} x ${numberOfNights} = $${
+              numberOfNights * pricePerNight
+            }`}
+          </span>
+        ) : (
+          <span>${pricePerNight}</span>
+        )}
+      </h3>
+      {/* <h3 className="text-md font-bold"> ${pricePerNight}</h3> */}
 
-      <form onSubmit={isLoggedIn?handleSubmit(directSubmit):handleSubmit(onSignInClick)}>
+      <form
+        onSubmit={
+          isLoggedIn ? handleSubmit(directSubmit) : handleSubmit(onSignInClick)
+        }
+      >
         <div className="grid grid-cols-1 gap-4 items-center">
           <div>
+            <DatePicker
+              required
+              selected={checkIn}
+              onChange={(e) => {
+                setValue("checkIn", e as Date);
+                search.saveSearchValues(
+                  "",
+                  e as Date,
+                  search.checkOut,
+                  search.adultCount,
+                  search.childCount
+                );
+              }}
+              selectsStart
+              startDate={checkIn}
+              endDate={checkOut}
+              minDate={minDate}
+              maxDate={maxDate}
+              placeholderText="Chek-in Date"
+              className="min-w-full bg-white p-2 focus:outline-none"
+              dateFormat="dd/MM/yyyy"
+              wrapperClassName="min-w-full"
+            />
+          </div>
+          <div>
+            <DatePicker
+              required
+              selected={checkOut}
+              onChange={(e) => {
+                search.saveSearchValues(
+                  "",
+                  search.checkIn,
+                  e as Date,
+                  search.adultCount,
+                  search.childCount
+                );
+                setValue("checkOut", e as Date);
+              }}
+              selectsStart
+              startDate={checkIn}
+              endDate={checkOut}
+              minDate={minDate}
+              maxDate={maxDate}
+              placeholderText="Chek-in Date"
+              className="min-w-full bg-white p-2 focus:outline-none"
+              dateFormat="dd/MM/yyyy"
+              wrapperClassName="min-w-full"
+            />
+          </div>
+
+          {/* <div>
             <DatePicker
               required
               selected={checkIn}
@@ -101,7 +182,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
               dateFormat="dd/MM/yyyy"
               wrapperClassName="min-w-full"
             />
-          </div>
+          </div> */}
           <div className="flex bg-white px-2 py-1 gap-2">
             <label className="items-center flex">
               Adults:

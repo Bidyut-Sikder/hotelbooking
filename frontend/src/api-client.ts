@@ -182,6 +182,7 @@ export type UserType = {
   firstName: string;
   lastName: string;
 };
+//logged in user
 export const fetchCurrentUser = async (): Promise<UserType> => {
   const res = await fetch(`${API_BASE_URL}/api/users/me`, {
     method: "GET",
@@ -199,6 +200,25 @@ export const fetchCurrentUser = async (): Promise<UserType> => {
 //unauthorized
 export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
   const res = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
+  if (!res.ok) {
+    throw new Error("Error fetching hotel by id");
+  }
+  return res.json();
+};
+
+//booking.....
+
+export const createBooking = async (data: any) => {
+  // console.log(data)
+  const res = await fetch(`${API_BASE_URL}/api/payments/init`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    credentials:"include"
+  });
+
   if (!res.ok) {
     throw new Error("Error fetching hotel by id");
   }

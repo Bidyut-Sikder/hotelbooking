@@ -10,7 +10,6 @@ const Details = () => {
   const { data } = useQuery("fetchHotelById", () => fetchHotelById(id || ""), {
     enabled: !!id,
   });
-  console.log(data);
 
   if (!data) return <div>Loading...</div>;
 
