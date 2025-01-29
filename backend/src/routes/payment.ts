@@ -12,29 +12,17 @@ const sslcommerz = new SSLCommerz(store_id, store_password, false); //use true i
 
 //sslcommerz init
 router.post("/init", verifyToken, async (req, res) => {
-  // const {
-  //   firstName,
-  //   lastName,
-  //   email,
-  //   phone,
-  //   hotelId,
-  //   adultCount,
-  //   childCount,
-  //   checkIn,
-  //   checkOut,
-  //   totalCost,
-  // } = req.body;
 
-  // const booking = await BookingModel.create();
+  const BACKEN_API = "https://hotelbooking-app-nmk8.onrender.com";
   const tranId = `TRANS${Date.now()}`;
   const data = {
     total_amount: parseInt(req.body.totalCost),
     currency: "BDT",
     tran_id: tranId, // use unique tran_id for each api call
-    success_url: `http://localhost:5000/api/payments/success/${tranId}`,
-    fail_url: `http://localhost:5000/api/payments/fail/${tranId}`,
-    cancel_url: `http://localhost:5000/api/payments/cancel/${tranId}`,
-    ipn_url: `http://localhost:5000/api/payments/ipn/${tranId}`,
+    success_url: `${BACKEN_API}/api/payments/success/${tranId}`,
+    fail_url: `${BACKEN_API}/api/payments/fail/${tranId}`,
+    cancel_url: `${BACKEN_API}/api/payments/cancel/${tranId}`,
+    ipn_url: `${BACKEN_API}/api/payments/ipn/${tranId}`,
     shipping_method: "No", //if it is (No) we do not need to provide any sipping information.
     product_name: "Hotel.",
     product_category: "Reservation",
@@ -86,10 +74,8 @@ router.post("/success/:tranId", async (req, res) => {
     },
     { new: true }
   );
-  
 
   if (result?.status !== "confirmed") {
-
     res.json({ message: "Something went wrong" });
   }
   // res.json({ message: "Payment was successful", data: req.body });
