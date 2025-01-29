@@ -9,20 +9,19 @@ const store_id = process.env.STORE_ID;
 const store_password = process.env.STORE_PASSWORD;
 
 const sslcommerz = new SSLCommerz(store_id, store_password, false); //use true in production
+const BACKEND_API =  process.env.BACKEND_API || "https://hotelbooking-app-nmk8.onrender.com";
 
 //sslcommerz init
 router.post("/init", verifyToken, async (req, res) => {
-
-  const BACKEN_API = "https://hotelbooking-app-nmk8.onrender.com";
   const tranId = `TRANS${Date.now()}`;
   const data = {
     total_amount: parseInt(req.body.totalCost),
     currency: "BDT",
     tran_id: tranId, // use unique tran_id for each api call
-    success_url: `${BACKEN_API}/api/payments/success/${tranId}`,
-    fail_url: `${BACKEN_API}/api/payments/fail/${tranId}`,
-    cancel_url: `${BACKEN_API}/api/payments/cancel/${tranId}`,
-    ipn_url: `${BACKEN_API}/api/payments/ipn/${tranId}`,
+    success_url: `${BACKEND_API}/api/payments/success/${tranId}`,
+    fail_url: `${BACKEND_API}/api/payments/fail/${tranId}`,
+    cancel_url: `${BACKEND_API}/api/payments/cancel/${tranId}`,
+    ipn_url: `${BACKEND_API}/api/payments/ipn/${tranId}`,
     shipping_method: "No", //if it is (No) we do not need to provide any sipping information.
     product_name: "Hotel.",
     product_category: "Reservation",
@@ -79,7 +78,7 @@ router.post("/success/:tranId", async (req, res) => {
     res.json({ message: "Something went wrong" });
   }
   // res.json({ message: "Payment was successful", data: req.body });
-  res.redirect(302, "http://localhost:5173/payment/success");
+  res.redirect(302, "https://hotelbooking-xi.vercel.app/payment/success");
 });
 
 router.post("/fail/:tranId", async (req, res) => {
@@ -91,7 +90,7 @@ router.post("/fail/:tranId", async (req, res) => {
       res.json({ message: "Something went wrong", data: req.body });
     }
     // res.json({ message: "Payment failed", data: req.body });
-    res.redirect(302, "http://localhost:5173/payment/fail");
+    res.redirect(302, "https://hotelbooking-xi.vercel.app/payment/failed");
     //res.redirect( 301, "localhost:5173/payment/fail");
   } catch (error) {
     res.json({ message: "Something went wrong" });

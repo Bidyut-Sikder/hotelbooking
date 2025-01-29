@@ -11,7 +11,7 @@ import Details from "./pages/Details";
 import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
 import PaymentSuccess from "./pages/PaymentSuccess";
-import PaymentFail from "./pages/PaymentFail";
+import PaymentFail from "./pages/PaymentFailed";
 
 function App() {
   const { isLoggedIn } = useAppContext();
@@ -66,7 +66,7 @@ function App() {
               }
             />
             <Route
-              path="/payment/fail"
+              path="/payment/failed"
               element={
                 <Layout>
                   <PaymentFail />
