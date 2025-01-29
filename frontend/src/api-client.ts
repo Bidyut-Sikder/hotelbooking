@@ -2,7 +2,7 @@ import { FormType } from "./pages/Register";
 import { SignInFormType } from "./pages/SignIn";
 import { HotelType } from "../../backend/src/shared/types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE_URL = "https://aslyuiqvlhslxmomnxnlksif3a0cjuia.lambda-url.ap-south-1.on.aws";
 // this project The Frontend and Backend are hosted on the same domain
 //when we host this on render on the same domain API_BASE_URL will be undefined
 // so we need to use "" as a fallback value
