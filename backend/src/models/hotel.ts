@@ -25,7 +25,7 @@ export interface BookingType {
   userId: string;
   firstName: string;
   lastName: string;
-  email: string;
+  email: string; 
   phone: string;
   hotel: { type: mongoose.Schema.Types.ObjectId };
   adultCount: number;

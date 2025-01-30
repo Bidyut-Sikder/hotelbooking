@@ -20,6 +20,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// cloudinary.config({
+//   cloud_name:'doozndhqq' ,// process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key:'428161613493697', //process.env.CLOUDINARY_API_KEY,
+//   api_secret:'p3AdEyYA5n09G8dsW31mYKvev2A' // process.env.CLOUDINARY_API_SECRET,
+// });
+
 connectDB();
 // mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 

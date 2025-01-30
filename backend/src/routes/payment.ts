@@ -9,8 +9,10 @@ const store_id = process.env.STORE_ID;
 const store_password = process.env.STORE_PASSWORD;
 
 const sslcommerz = new SSLCommerz(store_id, store_password, false); //use true in production
-const BACKEND_API =  process.env.BACKEND_API || "https://hotelbooking-app-nmk8.onrender.com";
-
+const BACKEND_API =
+  process.env.BACKEND_API || "https://hotelbooking-app-nmk8.onrender.com";
+const FRONTEND_URL =
+  process.env.FRONTEND_URL || "https://hotelbooking-xi.vercel.app";
 //sslcommerz init
 router.post("/init", verifyToken, async (req, res) => {
   const tranId = `TRANS${Date.now()}`;
@@ -78,7 +80,7 @@ router.post("/success/:tranId", async (req, res) => {
     res.json({ message: "Something went wrong" });
   }
   // res.json({ message: "Payment was successful", data: req.body });
-  res.redirect(302, "https://hotelbooking-xi.vercel.app/success");
+  res.redirect(302, `${FRONTEND_URL}/success`);
 });
 
 router.post("/fail/:tranId", async (req, res) => {
@@ -90,7 +92,7 @@ router.post("/fail/:tranId", async (req, res) => {
       res.json({ message: "Something went wrong", data: req.body });
     }
     // res.json({ message: "Payment failed", data: req.body });
-    res.redirect(302, "https://hotelbooking-xi.vercel.app/failed");
+    res.redirect(302, `${FRONTEND_URL}/failed`);
     //res.redirect( 301, "localhost:5173/payment/fail");
   } catch (error) {
     res.json({ message: "Something went wrong" });

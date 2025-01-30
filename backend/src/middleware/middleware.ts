@@ -1,5 +1,6 @@
+import { NextFunction, Request, Response } from "express";
 import { check, body, param } from "express-validator";
-
+import jwt, { JwtPayload } from "jsonwebtoken";
 export const userRegisterCheckMiddleware = [
   check("firstName", "First Name is required.")
     .isLength({ min: 3, max: 20 })
@@ -62,8 +63,25 @@ export const validateHotelData = [
     .withMessage("Price per night must be a non-negative number.")
     .notEmpty()
     .withMessage("Price per night is required."),
-
 ];
 
+export const validateHotelId = [
+  param("id").notEmpty().withMessage("Hotel Id is required."),
+];
 
-export const validateHotelId=[param("id").notEmpty().withMessage("Hotel Id is required.")]
+//verify User or stranger searching
+export const checkUserOrStranger = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const token = req.cookies["auth_token"];
+
+  if (token) {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY as string);
+    req.userId = (decoded as JwtPayload).userId;
+    next();
+  } else {
+    next();
+  }
+};

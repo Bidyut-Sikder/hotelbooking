@@ -2,70 +2,76 @@ import express, { Request, Response } from "express";
 import HotelModel from "../models/hotel";
 import { HotelSearchResponse } from "../shared/types";
 import { param, validationResult } from "express-validator";
-import { validateHotelId } from "../middleware/middleware";
+import { checkUserOrStranger, validateHotelId } from "../middleware/middleware";
 
 const router = express.Router();
 
 //search facilities
 
-router.get("/search", async (req: Request, res: Response) => {
-  try {
-    const pageSize = 2; //number of items should be shown on per page
-    const pageNumber = parseInt(
-      req.query.page ? req.query.page.toString() : "1"
-    );
-    const skip = (pageNumber - 1) * pageSize;
+router.get(
+  "/search",
+  checkUserOrStranger,
+  async (req: Request, res: Response) => {
+    try {
+      const pageSize = 2; //number of items should be shown on per page
+      const pageNumber = parseInt(
+        req.query.page ? req.query.page.toString() : "1"
+      );
+      const skip = (pageNumber - 1) * pageSize;
 
-    const query = constructSearchQuery(req.query);
+      // const query = constructSearchQuery(req.query);
+      const query = constructSearchQuery(req);
 
-    let sortOption = {};
-    switch (req.query.sortOption) {
-      case "starRating":
-        sortOption = { starRating: -1 };
-        break;
-      case "pricePerNightASC":
-        sortOption = { pricePerNight: 1 };
-        break;
-      case "pricePerNightDSC":
-        sortOption = { pricePerNight: -1 };
-        break;
-      default:
-        break;
+      let sortOption = {};
+      switch (req.query.sortOption) {
+        case "starRating":
+          sortOption = { starRating: -1 };
+          break;
+        case "pricePerNightASC":
+          sortOption = { pricePerNight: 1 };
+          break;
+        case "pricePerNightDSC":
+          sortOption = { pricePerNight: -1 };
+          break;
+        default:
+          break;
+      }
+
+      // const hotels = await HotelModel.find(query)
+      const hotels = await HotelModel.find(query)
+        .sort(sortOption)
+        .skip(skip)
+        .limit(pageSize);
+
+      // let total;
+      // if (
+      //   req.query.destination === "" &&
+      //   req.query.adultCount === "1" &&
+      //   req.query.childCount === "0"
+      // ) {
+      //   total = await HotelModel.countDocuments();
+      // }
+
+      const total = await HotelModel.countDocuments(query);
+
+      const totalPages = Math.ceil(total / pageSize);
+
+      const response: HotelSearchResponse = {
+        data: hotels,
+        pagination: {
+          total,
+          page: pageNumber,
+          pages: totalPages, // total number of pages
+        },
+      };
+
+      res.status(200).json(response);
+      return;
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching hotel" });
     }
-
-    const hotels = await HotelModel.find(query)
-      .sort(sortOption)
-      .skip(skip)
-      .limit(pageSize);
-
-    // let total;
-    // if (
-    //   req.query.destination === "" &&
-    //   req.query.adultCount === "1" &&
-    //   req.query.childCount === "0"
-    // ) {
-    //   total = await HotelModel.countDocuments();
-    // }
-
-    const total = await HotelModel.countDocuments(query);
-
-    const totalPages = Math.ceil(total / pageSize);
-
-    const response: HotelSearchResponse = {
-      data: hotels,
-      pagination: {
-        total,
-        page: pageNumber,
-        pages: totalPages, // total number of pages
-      },
-    };
-
-    res.status(200).json(response);
-    return;
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching hotel" });
   }
-});
+);
 
 //getbyid(this should be placed under search facilities)
 router.get("/:id", validateHotelId, async (req: Request, res: Response) => {
@@ -92,7 +98,66 @@ router.get("/:id", validateHotelId, async (req: Request, res: Response) => {
 });
 export default router;
 
-const constructSearchQuery = (queryParams: any) => {
+const constructSearchQuery = (req: any) => {
+  const constructedQuery: any = {};
+ 
+  if (req.userId) {
+    constructedQuery.userId = { $ne: req.userId };
+  }
+  if (req.query.destination) {
+    constructedQuery.$or = [
+      { city: new RegExp(req.query.destination, "i") },
+      { country: new RegExp(req.query.destination, "i") },
+    ];
+  }
+
+  if (req.query.adultCount) {
+    constructedQuery.adultCount = {
+      $gte: parseInt(req.query.adultCount),
+    };
+  }
+
+  if (req.query.childCount) {
+    constructedQuery.childCount = {
+      $gte: parseInt(req.query.childCount),
+    };
+  }
+
+  if (req.query.facilities) {
+    constructedQuery.facilities = {
+      $all: req.query.facilities,
+      //if we do not put it in [] then it will work too
+    };
+    // constructedQuery.facilities = {
+    //   $all: Array.isArray(req.query.facilities)
+    //     ? req.query.facilities
+    //     : [req.query.facilities], //if we do not put it in [] then it will work too
+    // };
+  }
+
+  if (req.query.types) {
+    constructedQuery.type = {
+      $in: Array.isArray(req.query.types) ? req.query.types : [req.query.types], //if we do not put it in [] then it will work too
+    };
+  }
+
+  if (req.query.stars) {
+    const starRatings = Array.isArray(req.query.stars)
+      ? req.query.stars
+      : [parseInt(req.query.stars)]; //if we do not put it in [] then it will work too
+
+    constructedQuery.starRating = { $in: starRatings };
+  }
+  if (req.query.maxPrice) {
+    constructedQuery.pricePerNight = { $lte: parseInt(req.query.maxPrice) };
+  }
+
+  // console.log(constructedQuery);
+
+  return constructedQuery;
+};
+
+const constructSearchQuery2 = (queryParams: any) => {
   // console.log(queryParams)
   const constructedQuery: any = {};
 

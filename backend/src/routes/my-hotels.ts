@@ -19,21 +19,24 @@ const upload = multer({
 
 const uploadToCloudinary = async (imageFiles: Express.Multer.File[]) => {
   //upload images to cloudinary
+
   const imagesPromises = imageFiles.map(async (image) => {
     const base64 = image.buffer.toString("base64");
     // const base64 = Buffer.from(image.buffer).toString("base64");
     const uploadedImage = await cloudinary.uploader.upload(
       `data:${image.mimetype};base64,${base64}`, //image Path (dynamicaly stores image in memory)
       {
-        format: "webp",
+        // format: "webp",
         folder: "hotelBooking", //cloudinary images folder name
       }
     );
     return uploadedImage.secure_url;
   });
+
   const imagesUrls = await Promise.all(imagesPromises);
   return imagesUrls;
 };
+
 
 //add-hotel
 router.post(
@@ -61,6 +64,7 @@ router.post(
       // });
 
       const imagesUrls = await uploadToCloudinary(imageFiles);
+
       hotelData.imageUrls = imagesUrls;
       hotelData.lastUpdated = new Date();
       hotelData.userId = req.userId;
@@ -68,7 +72,7 @@ router.post(
 
       res.status(201).json(newHotel);
     } catch (error) {
-      console.log(error);
+      console.log(JSON.stringify(error));
       res.status(500).json({ message: "Server Error" });
     }
   }
@@ -120,7 +124,7 @@ router.put(
 
     try {
       const updateHotelData: HotelType = req.body;
- 
+
       updateHotelData.lastUpdated = new Date();
       const updatedHotel = await HotelModel.findOneAndUpdate(
         {
@@ -135,7 +139,7 @@ router.put(
         res.status(404).json({ message: "Hotel not found" });
         return;
       }
- 
+
       const imageFiles = req.files as Express.Multer.File[];
       const updatedImagesUrls = await uploadToCloudinary(imageFiles);
       updatedHotel.imageUrls = [
@@ -153,27 +157,4 @@ router.put(
   }
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default router;
-

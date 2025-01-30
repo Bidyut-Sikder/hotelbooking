@@ -33,7 +33,7 @@ const BookingForm = ({ pricePerNight, numberOfNights, currentUser }: Props) => {
   // console.log(pricePerNight, numberOfNights);
   const { mutate, isError, error, isLoading } = useMutation(createBooking, {
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       window.location.replace(data.payment_url);
     },
     onError: (error) => {
@@ -63,7 +63,7 @@ const BookingForm = ({ pricePerNight, numberOfNights, currentUser }: Props) => {
       lastName: formData.lastName,
       email: formData.email,
       phone: formData.phone,
-      hotelId: id,
+      hotel: id,
       adultCount: search.adultCount,
       childCount: search.childCount,
       checkIn: search.checkIn,
