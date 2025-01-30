@@ -1,0 +1,194 @@
+<div className="p-4 sm:p-6 space-y-8 font-sans">
+    {/* Hero Section */}
+    <header className="text-center space-y-4">
+      <h1 className="text-3xl sm:text-4xl font-bold">
+        Welcome to Our Hotel Booking Service
+      </h1>
+      <p className="text-base sm:text-lg">
+        Find your perfect getaway from beachside relaxation to thrilling ski
+        resorts.
+      </p>
+    </header>
+
+    {/* Featured Hotel Section */}
+    <section className="bg-gray-100 p-6 rounded-2xl shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+        Featured Hotel
+      </h2>
+      <div>
+        <img
+          src={featuredHotel.imageUrls[0]}
+          alt={featuredHotel.name}
+          className="w-full rounded-t-2xl object-cover"
+        />
+        <div className="mt-4">
+          <h3 className="text-xl sm:text-2xl font-semibold">
+            {featuredHotel.name}
+          </h3>
+          <p className="text-sm sm:text-base">
+            {featuredHotel.description}
+          </p>
+          <p className="mt-4 text-xs sm:text-sm text-gray-600">
+            Located in {featuredHotel.city}, {featuredHotel.country}
+          </p>
+          <div className="mt-4">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              Book Now at ${featuredHotel.pricePerNight}/night
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Carousel Section */}
+
+    <section>
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+        Our Hotels
+      </h2>
+      <div className="flex flex-wrap sm:flex-nowrap overflow-x-scroll sm:overflow-x-auto space-x-4">
+        {hotelData.map((hotel) => (
+          <div
+            key={hotel.name}
+            className="min-w-[280px] sm:min-w-[300px] bg-white rounded-lg shadow-md mb-4 sm:mb-0"
+          >
+            <img
+              src={hotel.imageUrls[0]}
+              alt={hotel.name}
+              className="w-full rounded-t-lg object-cover"
+            />
+            <div className="p-4">
+              <h3 className="text-xl font-semibold">{hotel.name}</h3>
+              <p className="text-sm text-gray-600">
+                {hotel.city}, {hotel.country}
+              </p>
+              <button className="text-blue-500 mt-2">View Details</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Most Visited Areas Section */}
+    <section>
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+        Most Visited Areas
+      </h2>
+      <div className="flex flex-wrap sm:flex-nowrap space-x-4">
+        {visitedAreas.map((area) => (
+          <div
+            key={area.name}
+            className="bg-white rounded-lg shadow-md w-full sm:w-64 mb-4 sm:mb-0"
+          >
+            <img
+              src={area.imageUrl}
+              alt={area.name}
+              className="w-full rounded-t-lg h-48 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="text-xl font-semibold">{area.name}</h3>
+              <p className="text-sm text-gray-600">{area.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Deals for the Weekend Section */}
+    {/* <section>
+    <h2 className="text-2xl sm:text-3xl font-semibold mb-4">Deals for the Weekend</h2>
+    <div className="flex flex-wrap sm:flex-nowrap space-x-4">
+      {weekendDeals.map((deal) => (
+        <div key={deal.name} className="bg-white rounded-lg shadow-md w-full sm:w-64 mb-4 sm:mb-0">
+          <img
+            src={deal.imageUrl}
+            alt={deal.name}
+            className="w-full rounded-t-lg h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="text-xl font-semibold">{deal.name}</h3>
+            <p className="text-sm text-gray-600">{deal.description}</p>
+            <p className="text-lg font-semibold text-blue-500">
+              ${deal.price} <span className="line-through text-gray-500">${deal.originalPrice}</span>
+            </p>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Book Now</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section> */}
+
+    <section>
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center">
+        Deals for the Weekend
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {weekendDeals.map((deal) => (
+          <div
+            key={deal.name}
+            className="bg-white rounded-lg shadow-lg overflow-hidden"
+          >
+            <img
+              src={deal.imageUrl}
+              alt={deal.name}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="text-xl font-semibold mb-2">{deal.name}</h3>
+              <p className="text-sm text-gray-600 mb-3">
+                {deal.description}
+              </p>
+              <p className="text-lg font-semibold text-blue-500">
+                ${deal.price}{" "}
+                <span className="line-through text-gray-500">
+                  ${deal.originalPrice}
+                </span>
+              </p>
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 w-full">
+                Book Now
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Contact Section */}
+    <section className="bg-gray-100 p-6 rounded-2xl shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
+        Contact Us
+      </h2>
+      <form className="space-y-4">
+        <div>
+          <label className="block text-sm sm:text-base font-medium">
+            Your Name
+          </label>
+          <input
+            type="text"
+            className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-300"
+          />
+        </div>
+        <div>
+          <label className="block text-sm sm:text-base font-medium">
+            Email
+          </label>
+          <input
+            type="email"
+            className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-300"
+          />
+        </div>
+        <div>
+          <label className="block text-sm sm:text-base font-medium">
+            Message
+          </label>
+          <textarea
+            rows={4}
+            className="w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-300"
+          ></textarea>
+        </div>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+          Submit
+        </button>
+      </form>
+    </section>
+  </div>

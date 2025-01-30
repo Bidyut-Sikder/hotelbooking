@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },//shad cdn 
+
     "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
