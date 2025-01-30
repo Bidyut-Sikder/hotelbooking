@@ -12,13 +12,21 @@ import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFail from "./pages/PaymentFailed";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const { isLoggedIn } = useAppContext();
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout>hi</Layout>} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
         <Route
           path="/sign-in"
           element={
