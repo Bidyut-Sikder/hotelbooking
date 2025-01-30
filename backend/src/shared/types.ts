@@ -31,7 +31,7 @@ export interface BookingType {
   lastName: string;
   email: string;
   phone: string;
-  hotelId: string;
+  hotel: string;
   adultCount: number;
   childCount: number;
   checkIn: Date;
